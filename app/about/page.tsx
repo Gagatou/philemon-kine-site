@@ -18,12 +18,12 @@ export default function About() {
               <h2>Mon parcours</h2>
               <p>
                 Je suis Philémon Eydoux, kinésithérapeute passionné par la rééducation et la réathlétisation.
-                Mon objectif est d'accompagner mes patients vers le bien-être et le retour à leurs activités préférées.
+                Mon objectif est d'accompagner mes patients vers le bien-être et le retour à leurs activités.
               </p>
               <p>
-                Diplômé en kinésithérapie, j'ai développé une expertise particulière dans le suivi du handicap
-                et de l'accompagnement des enfants en situation de handicap moteur. Mon approche combine rigueur
-                scientifique et bienveillance.
+                Diplômé en kinésithérapie, je suis spécialisé dans la rééducation fonctionnelle et l'accompagnement
+                à la remise en mobilité. J'ai également de l'expérience solide dans l'accompagnement des enfants
+                atteints de handicap moteur. Mon approche combine rigueur scientifique et bienveillance.
               </p>
             </div>
 

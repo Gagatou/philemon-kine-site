@@ -37,17 +37,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
-          <div className={styles.section}>
-            <h4>Services</h4>
-            <ul>
-              <li>Rééducation</li>
-              <li>Réathlétisation</li>
-              <li>Suivi du handicap</li>
-              <li>Prévention</li>
-            </ul>
-          </div>
-
           {/* Contact */}
           <div className={styles.section}>
             <h4>Contact</h4>

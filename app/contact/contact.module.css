@@ -139,22 +139,27 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   align-items: center;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .step {
   background: white;
-  padding: 30px 20px;
-  border-radius: 12px;
+  padding: 50px 30px;
+  border-radius: 16px;
   text-align: center;
   border: 2px solid #E0EEF2;
   transition: all 0.3s ease;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .step:hover {
   border-color: #7CB9D4;
-  box-shadow: 0 8px 24px rgba(124, 185, 212, 0.15);
+  box-shadow: 0 12px 32px rgba(124, 185, 212, 0.2);
+  transform: translateY(-5px);
 }
 
 .stepNumber {

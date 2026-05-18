@@ -42,7 +42,7 @@ export default function Contact() {
               <div className={styles.infoCard}>
                 <Phone size={32} color="#7CB9D4" />
                 <h3>Appel direct</h3>
-                <p>06 35 55 00 50</p>
+                <p className={styles.phoneNumber}>06&nbsp;35&nbsp;55&nbsp;00&nbsp;50</p>
                 <small>Disponible du lundi au vendredi de 9h à 18h</small>
               </div>
 
@@ -119,6 +119,14 @@ export default function Contact() {
               <div className={styles.faqItem}>
                 <h3>Que faire en cas d'annulation ?</h3>
                 <p>Veuillez m'avertir au minimum 24 heures à l'avance pour éviter des frais d'annulation.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h3>Comment suis-je remboursé ?</h3>
+                <p>Les séances sont remboursées par la Sécurité Sociale sur prescription médicale. Vérifiez votre couverture mutuelle pour les dépassements éventuels.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h3>Y a-t-il une réduction possible ?</h3>
+                <p>Les bénéficiaires de l'AME ont accès à des tarifs réduits. N'hésitez pas à m'en parler lors de votre première visite.</p>
               </div>
             </div>
           </div>

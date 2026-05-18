@@ -38,11 +38,6 @@ export default function Navigation() {
               </Link>
             </li>
             <li>
-              <Link href="/pricing" onClick={() => setIsOpen(false)}>
-                Tarifs
-              </Link>
-            </li>
-            <li>
               <Link href="/contact" className={styles.ctaLink} onClick={() => setIsOpen(false)}>
                 Contact
               </Link>
