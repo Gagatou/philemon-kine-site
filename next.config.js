@@ -2,9 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  images: {
-    optimization: true,
-  },
   headers: async () => [
     {
       source: '/robots.txt',
