@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <>
-      {/* Sticky Navigation */}
+      {/* Sticky Navigation - Updated */}
       <nav className={styles.stickyNav}>
         <div className="container">
           <div className={styles.navWrapper}>
