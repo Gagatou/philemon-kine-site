@@ -1,12 +1,67 @@
+'use client'
+
 import Link from 'next/link'
-import { MapPin, Phone, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock } from 'lucide-react'
+import { useState } from 'react'
 import styles from './page.module.css'
 
+const PHONE_NUMBER = '33635550050'
+const WHATSAPP_MESSAGE = 'Bonjour Philémon, je souhaiterais prendre un rendez-vous.'
+
 export default function Home() {
+  const [activeSection, setActiveSection] = useState('home')
+  const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
-      {/* Hero Section */}
-      <section className={styles.hero}>
+      {/* Sticky Navigation */}
+      <nav className={styles.stickyNav}>
+        <div className="container">
+          <div className={styles.navWrapper}>
+            <div className={styles.logo}>
+              <div className={styles.logoIcon}>PE</div>
+              <span>Philémon Eydoux</span>
+            </div>
+            <ul className={styles.navLinks}>
+              <li>
+                <button
+                  onClick={() => scrollToSection('home')}
+                  className={activeSection === 'home' ? styles.active : ''}
+                >
+                  Accueil
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className={activeSection === 'about' ? styles.active : ''}
+                >
+                  Qui je suis
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className={`${styles.ctaBtn} ${activeSection === 'contact' ? styles.active : ''}`}
+                >
+                  Me contacter
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* HERO SECTION */}
+      <section id="home" className={styles.hero}>
         <div className="container">
           <div className={styles.heroContent}>
             <div className={styles.heroLogo}>
@@ -40,16 +95,20 @@ export default function Home() {
             </div>
 
             <div className={styles.cta}>
-              <Link href="/contact" className="btn btn-primary">
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="btn btn-primary"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              >
                 Prendre rendez-vous
-                <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-              </Link>
+                <ArrowRight size={18} />
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* SERVICES SECTION */}
       <section className={styles.services}>
         <div className="container">
           <h2>Mes services</h2>
@@ -78,18 +137,256 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className={styles.ctaSection}>
+      {/* ABOUT SECTION */}
+      <section id="about" className={styles.about}>
         <div className="container">
-          <div className={styles.ctaContent}>
-            <h2>Prêt à reprendre vos activités ?</h2>
-            <p>Contactez-moi pour un premier rendez-vous personnalisé</p>
-            <Link href="/contact" className="btn btn-primary">
-              Me contacter via WhatsApp
-            </Link>
+          <h2>Qui je suis</h2>
+
+          <div className={styles.aboutContent}>
+            <div className={styles.story}>
+              <p>
+                Je suis Philémon Eydoux, kinésithérapeute passionné par la rééducation et la réathlétisation.
+                Mon objectif est d'accompagner mes patients vers le bien-être et le retour à leurs activités.
+              </p>
+              <p>
+                Diplômé en kinésithérapie, je suis spécialisé dans la rééducation fonctionnelle et l'accompagnement
+                à la remise en mobilité. J'ai également de l'expérience solide dans l'accompagnement des enfants
+                atteints de handicap moteur. Mon approche combine rigueur scientifique et bienveillance.
+              </p>
+            </div>
+
+            <div className={styles.highlights}>
+              <div className={styles.highlightCard}>
+                <Award size={32} color="#7CB9D4" />
+                <h3>Formation complète</h3>
+                <p>Diplômé en kinésithérapie avec expérience dans la rééducation neurologique</p>
+              </div>
+              <div className={styles.highlightCard}>
+                <Heart size={32} color="#7CB9D4" />
+                <h3>Spécialisation handicap</h3>
+                <p>Accompagnement adapté pour les enfants et adultes en situation de handicap</p>
+              </div>
+              <div className={styles.highlightCard}>
+                <Footprints size={32} color="#7CB9D4" />
+                <h3>Sportif passionné</h3>
+                <p>Trail runner et sportif, je comprends les enjeux de la réathlétisation</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.expertise}>
+            <h3>Mes domaines d'expertise</h3>
+            <div className={styles.expertiseGrid}>
+              <div className={styles.expertiseItem}>
+                <h4>Rééducation fonctionnelle</h4>
+                <p>Suivi post-opératoire et réadaptation suite à une blessure</p>
+              </div>
+              <div className={styles.expertiseItem}>
+                <h4>Réathlétisation sportive</h4>
+                <p>Reprise progressive du sport en toute sécurité pour athlètes et amateurs</p>
+              </div>
+              <div className={styles.expertiseItem}>
+                <h4>Suivi du handicap moteur</h4>
+                <p>Prise en charge spécialisée des enfants atteints de handicap moteur</p>
+              </div>
+              <div className={styles.expertiseItem}>
+                <h4>Prévention des blessures</h4>
+                <p>Conseils et programme d'exercices pour prévenir les pathologies</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* CONTACT SECTION */}
+      <section id="contact" className={styles.contactSection}>
+        <div className="container">
+          <h2>Prendre contact</h2>
+
+          <div className={styles.contactGrid}>
+            {/* WhatsApp CTA */}
+            <div className={styles.whatsappCta}>
+              <div className={styles.whatsappCard}>
+                <div className={styles.whatsappIcon}>
+                  <MessageCircle size={48} color="white" />
+                </div>
+                <h3>Me contacter via WhatsApp</h3>
+                <p>Le moyen le plus rapide de prendre rendez-vous</p>
+                <p className={styles.phone}>06&nbsp;35&nbsp;55&nbsp;00&nbsp;50</p>
+                <a href={whatsappUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                  Envoyer un message WhatsApp
+                </a>
+                <p className={styles.response}>
+                  Habituellement, je réponds dans les 2-4 heures
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className={styles.infoSection}>
+              <div className={styles.infoCard}>
+                <Phone size={32} color="#7CB9D4" />
+                <h3>Appel direct</h3>
+                <p className={styles.phoneNumber}>06&nbsp;35&nbsp;55&nbsp;00&nbsp;50</p>
+                <small>Disponible du lundi au vendredi de 9h à 18h</small>
+              </div>
+
+              <div className={styles.infoCard}>
+                <MapPin size={32} color="#7CB9D4" />
+                <h3>Localisation</h3>
+                <p>Levallois-Perret</p>
+                <p>(Île-de-France)</p>
+              </div>
+
+              <div className={styles.infoCard}>
+                <Clock size={32} color="#7CB9D4" />
+                <h3>Horaires</h3>
+                <p>Lundi au vendredi</p>
+                <p>9h00 - 18h00</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Process */}
+          <div className={styles.process}>
+            <h3>Comment ça fonctionne ?</h3>
+            <div className={styles.steps}>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>1</div>
+                <h4>Contactez-moi</h4>
+                <p>Via WhatsApp, appel ou SMS</p>
+              </div>
+              <div className={styles.arrow}>→</div>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>2</div>
+                <h4>Confirmez votre RDV</h4>
+                <p>Choix de la date et heure</p>
+              </div>
+              <div className={styles.arrow}>→</div>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>3</div>
+                <h4>Première séance</h4>
+                <p>Bilan et plan de traitement</p>
+              </div>
+              <div className={styles.arrow}>→</div>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>4</div>
+                <h4>Suivi régulier</h4>
+                <p>Progression adaptée</p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ */}
+          <div className={styles.faq}>
+            <h3>Questions fréquentes</h3>
+            <div className={styles.faqGrid}>
+              <div className={styles.faqItem}>
+                <h4>Dois-je une ordonnance médicale ?</h4>
+                <p>Pour être remboursé par la Sécurité Sociale, oui. Cependant, une séance sans ordonnance est possible.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h4>Quel est le délai pour le premier RDV ?</h4>
+                <p>Généralement sous 2-3 jours. Pour les urgences, je fais de mon mieux pour trouver une place rapidement.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h4>Acceptez-vous les enfants ?</h4>
+                <p>Absolument ! J'ai de l'expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h4>Êtes-vous conventionné Sécu ?</h4>
+                <p>Oui, je suis conventionné. Les tarifs respectent le barème de la Sécurité Sociale.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h4>Proposez-vous des séances à domicile ?</h4>
+                <p>Oui, possibilité de séances à domicile avec un supplément. À discuter lors du premier contact.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h4>Que faire en cas d'annulation ?</h4>
+                <p>Veuillez m'avertir au minimum 24 heures à l'avance pour éviter des frais d'annulation.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h4>Comment suis-je remboursé ?</h4>
+                <p>Les séances sont remboursées par la Sécurité Sociale sur prescription médicale. Vérifiez votre couverture mutuelle pour les dépassements éventuels.</p>
+              </div>
+              <div className={styles.faqItem}>
+                <h4>Y a-t-il une réduction possible ?</h4>
+                <p>Les bénéficiaires de l'AME ont accès à des tarifs réduits. N'hésitez pas à m'en parler lors de votre première visite.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className={styles.finalCta}>
+        <div className="container">
+          <h2>Prêt à commencer votre suivi ?</h2>
+          <p>Contactez-moi dès maintenant via WhatsApp</p>
+          <a href={whatsappUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            Ouvrir WhatsApp
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <div className="container">
+          <div className={styles.footerContent}>
+            <div className={styles.brand}>
+              <h3>Philémon Eydoux</h3>
+              <p>Kinésithérapeute</p>
+              <p className={styles.tagline}>
+                Votre partenaire pour le bien-être et la réathlétisation
+              </p>
+            </div>
+
+            <div className={styles.section}>
+              <h4>Navigation</h4>
+              <ul>
+                <li>
+                  <button onClick={() => scrollToSection('home')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>
+                    Accueil
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('about')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>
+                    Qui je suis
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('contact')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>
+                    Contact
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div className={styles.section}>
+              <h4>Contact</h4>
+              <div className={styles.contactItem}>
+                <Phone size={18} />
+                <span>06 35 55 00 50</span>
+              </div>
+              <div className={styles.contactItem}>
+                <MapPin size={18} />
+                <span>Levallois-Perret (92)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.divider}></div>
+
+          <div className={styles.bottom}>
+            <p>
+              © {new Date().getFullYear()} Philémon Eydoux. Tous droits réservés.
+            </p>
+            <p className={styles.disclaimer}>
+              Site professionnel de kinésithérapie. Respectez les délais de 24h pour les annulations.
+            </p>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
