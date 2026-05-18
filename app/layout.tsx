@@ -1,8 +1,21 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { Playfair_Display, Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-playfair',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: 'Philémon Eydoux - Kinésithérapeute à Levallois-Perret',
@@ -42,7 +55,7 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID
 
   return (
-    <html lang="fr">
+    <html lang="fr" className={`${playfair.variable} ${inter.variable}`}>
       <head>
         {/* Structured Data - LocalBusiness Schema */}
         <script
