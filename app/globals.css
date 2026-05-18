@@ -230,6 +230,18 @@ small {
   }
 }
 
+/* Scroll Animation */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-base) ease-out, transform var(--transition-base) ease-out;
+}
+
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {

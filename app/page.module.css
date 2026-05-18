@@ -613,17 +613,6 @@
   animation: fadeIn var(--transition-base) ease-out;
 }
 
-/* Scroll Animation */
-[data-animate] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--transition-base) ease-out, transform var(--transition-base) ease-out;
-}
-
-[data-animate].visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 /* FINAL CTA */
 .finalCta {
@@ -881,14 +870,6 @@
 }
 
 @media (max-width: 480px) {
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.1rem;
-  }
-
   .stickyNav {
     padding: 0 var(--spacing-sm);
   }
