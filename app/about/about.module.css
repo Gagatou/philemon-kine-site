@@ -1,0 +1,163 @@
+.hero {
+  background: linear-gradient(135deg, #A8D8EA 0%, #C5E1DF 100%);
+  padding: 60px 0;
+  text-align: center;
+  color: white;
+}
+
+.hero h1 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.about {
+  padding: 100px 0;
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 100px;
+  align-items: center;
+}
+
+.story h2 {
+  margin-bottom: 30px;
+}
+
+.story p {
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.highlightCard {
+  background: #F8FBFC;
+  padding: 30px;
+  border-radius: 12px;
+  border-left: 4px solid #7CB9D4;
+  transition: all 0.3s ease;
+}
+
+.highlightCard:hover {
+  box-shadow: 0 8px 24px rgba(124, 185, 212, 0.15);
+  transform: translateX(10px);
+}
+
+.highlightCard h3 {
+  margin: 15px 0 10px 0;
+  color: #2C3E50;
+}
+
+.highlightCard p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.expertise {
+  margin-top: 100px;
+  padding-top: 80px;
+  border-top: 2px solid #E0EEF2;
+}
+
+.expertise h2 {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.expertiseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.expertiseItem {
+  background: white;
+  padding: 35px;
+  border-radius: 12px;
+  border: 2px solid #E0EEF2;
+  transition: all 0.3s ease;
+}
+
+.expertiseItem:hover {
+  border-color: #7CB9D4;
+  box-shadow: 0 8px 24px rgba(124, 185, 212, 0.15);
+  transform: translateY(-5px);
+}
+
+.expertiseItem h3 {
+  color: #7CB9D4;
+  margin-bottom: 15px;
+}
+
+.expertiseItem p {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.philosophy {
+  background: linear-gradient(135deg, #A8D8EA15 0%, #C5E1DF15 100%);
+  padding: 60px;
+  border-radius: 16px;
+}
+
+.philosophy h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.philosophyContent p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.philosophyContent p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 60px 0;
+  }
+
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .expertise {
+    margin-top: 60px;
+    padding-top: 40px;
+  }
+
+  .expertiseGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy {
+    padding: 40px 20px;
+  }
+
+  .philosophyContent p {
+    text-align: left;
+  }
+}
