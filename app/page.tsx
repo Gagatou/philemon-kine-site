@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock } from 'lucide-react'
-import { useState } from 'react'
+import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import styles from './page.module.css'
 
 const PHONE_NUMBER = '33635550050'
@@ -10,7 +10,38 @@ const WHATSAPP_MESSAGE = 'Bonjour Philémon, je souhaiterais prendre un rendez-v
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home')
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
   const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+
+  useEffect(() => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setIsDarkMode(prefersDark)
+  }, [])
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.style.colorScheme = 'dark'
+    } else {
+      document.documentElement.style.colorScheme = 'light'
+    }
+  }, [isDarkMode])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    )
+
+    document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId)
@@ -18,6 +49,10 @@ export default function Home() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode)
   }
 
   return (
@@ -53,6 +88,16 @@ export default function Home() {
                   className={`${styles.ctaBtn} ${activeSection === 'contact' ? styles.active : ''}`}
                 >
                   Me contacter
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={toggleDarkMode}
+                  className={styles.darkModeBtn}
+                  aria-label="Toggle dark mode"
+                  title={isDarkMode ? 'Mode clair' : 'Mode sombre'}
+                >
+                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
               </li>
             </ul>
@@ -109,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES SECTION */}
-      <section className={styles.services}>
+      <section className={styles.services} data-animate>
         <div className="container">
           <h2>Mes services</h2>
           <div className={styles.servicesGrid}>
@@ -138,7 +183,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="about" className={styles.about}>
+      <section id="about" className={styles.about} data-animate>
         <div className="container">
           <h2>Qui je suis</h2>
 
@@ -199,7 +244,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT SECTION */}
-      <section id="contact" className={styles.contactSection}>
+      <section id="contact" className={styles.contactSection} data-animate>
         <div className="container">
           <h2>Prendre contact</h2>
 
@@ -278,48 +323,38 @@ export default function Home() {
           </div>
 
           {/* FAQ */}
-          <div className={styles.faq}>
+          <div className={styles.faq} data-animate>
             <h3>Questions fréquentes</h3>
             <div className={styles.faqGrid}>
-              <div className={styles.faqItem}>
-                <h4>Dois-je une ordonnance médicale ?</h4>
-                <p>Pour être remboursé par la Sécurité Sociale, oui. Cependant, une séance sans ordonnance est possible.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h4>Quel est le délai pour le premier RDV ?</h4>
-                <p>Généralement sous 2-3 jours. Pour les urgences, je fais de mon mieux pour trouver une place rapidement.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h4>Acceptez-vous les enfants ?</h4>
-                <p>Absolument ! J'ai de l'expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h4>Êtes-vous conventionné Sécu ?</h4>
-                <p>Oui, je suis conventionné. Les tarifs respectent le barème de la Sécurité Sociale.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h4>Proposez-vous des séances à domicile ?</h4>
-                <p>Oui, possibilité de séances à domicile avec un supplément. À discuter lors du premier contact.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h4>Que faire en cas d'annulation ?</h4>
-                <p>Veuillez m'avertir au minimum 24 heures à l'avance pour éviter des frais d'annulation.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h4>Comment suis-je remboursé ?</h4>
-                <p>Les séances sont remboursées par la Sécurité Sociale sur prescription médicale. Vérifiez votre couverture mutuelle pour les dépassements éventuels.</p>
-              </div>
-              <div className={styles.faqItem}>
-                <h4>Y a-t-il une réduction possible ?</h4>
-                <p>Les bénéficiaires de l'AME ont accès à des tarifs réduits. N'hésitez pas à m'en parler lors de votre première visite.</p>
-              </div>
+              {[
+                { q: 'Dois-je une ordonnance médicale ?', a: 'Pour être remboursé par la Sécurité Sociale, oui. Cependant, une séance sans ordonnance est possible.' },
+                { q: 'Quel est le délai pour le premier RDV ?', a: 'Généralement sous 2-3 jours. Pour les urgences, je fais de mon mieux pour trouver une place rapidement.' },
+                { q: 'Acceptez-vous les enfants ?', a: 'Absolument ! J\'ai de l\'expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.' },
+                { q: 'Êtes-vous conventionné Sécu ?', a: 'Oui, je suis conventionné. Les tarifs respectent le barème de la Sécurité Sociale.' },
+                { q: 'Proposez-vous des séances à domicile ?', a: 'Oui, possibilité de séances à domicile avec un supplément. À discuter lors du premier contact.' },
+                { q: 'Que faire en cas d\'annulation ?', a: 'Veuillez m\'avertir au minimum 24 heures à l\'avance pour éviter des frais d\'annulation.' },
+                { q: 'Comment suis-je remboursé ?', a: 'Les séances sont remboursées par la Sécurité Sociale sur prescription médicale. Vérifiez votre couverture mutuelle pour les dépassements éventuels.' },
+                { q: 'Y a-t-il une réduction possible ?', a: 'Les bénéficiaires de l\'AME ont accès à des tarifs réduits. N\'hésitez pas à m\'en parler lors de votre première visite.' },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`${styles.faqItem} ${expandedFaq === idx ? styles.expanded : ''}`}
+                  onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
+                >
+                  <div className={styles.faqHeader}>
+                    <h4>{item.q}</h4>
+                    <ChevronDown size={20} className={styles.faqChevron} />
+                  </div>
+                  {expandedFaq === idx && <p>{item.a}</p>}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className={styles.finalCta}>
+      <section className={styles.finalCta} data-animate>
         <div className="container">
           <h2>Prêt à commencer votre suivi ?</h2>
           <p>Contactez-moi dès maintenant via WhatsApp</p>

@@ -84,6 +84,24 @@
   width: 100%;
 }
 
+.darkModeBtn {
+  background: none;
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-dark);
+  transition: all var(--transition-fast);
+  border-radius: 50%;
+}
+
+.darkModeBtn:hover {
+  background: rgba(124, 185, 212, 0.1);
+  transform: rotate(20deg);
+}
+
 .ctaBtn {
   background: linear-gradient(135deg, #7CB9D4, #5CA5BD) !important;
   color: white !important;
@@ -570,11 +588,41 @@
   font-weight: 600;
 }
 
+.faqHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faqChevron {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+  color: var(--color-accent);
+}
+
+.faqItem.expanded .faqChevron {
+  transform: rotate(-180deg);
+}
+
 .faqItem p {
   color: var(--color-text-secondary);
   font-size: 0.95rem;
-  margin: 0;
+  margin: var(--spacing-md) 0 0 0;
   line-height: 1.7;
+  animation: fadeIn var(--transition-base) ease-out;
+}
+
+/* Scroll Animation */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-base) ease-out, transform var(--transition-base) ease-out;
+}
+
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* FINAL CTA */
@@ -788,6 +836,11 @@
 
   .faqGrid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .faqItem {
+    padding: var(--spacing-md);
   }
 
   .process,
