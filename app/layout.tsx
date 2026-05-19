@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Playfair_Display, Inter } from 'next/font/google'
 import './globals.css'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -100,9 +98,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Navigation />
         <main>{children}</main>
-        <Footer />
 
         {/* Google Analytics */}
         {gaId && (
