@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown, Home } from 'lucide-react'
+import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown, Home as HomeIcon } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import styles from './page.module.css'
 
@@ -228,7 +228,7 @@ export default function Home() {
                 <p>Accompagnement adapté pour les enfants et adultes en situation de handicap</p>
               </div>
               <div className={styles.highlightCard}>
-                <Home size={32} color="#7CB9D4" />
+                <HomeIcon size={32} color="#7CB9D4" />
                 <h3>Suivi à domicile</h3>
                 <p>Séances flexibles chez vous pour plus de confort et d'accessibilité</p>
               </div>
