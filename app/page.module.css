@@ -827,8 +827,7 @@
   }
 
   .logo {
-    font-size: 0.9rem;
-    line-height: 1.2;
+    display: none !important;
   }
 
   .logoIcon {
