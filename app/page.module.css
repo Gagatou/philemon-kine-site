@@ -554,7 +554,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
+  margin: 0 auto 30px;
   box-shadow: 0 8px 20px rgba(124, 185, 212, 0.3);
   transition: all 0.4s ease;
 }
@@ -565,24 +565,26 @@
 }
 
 .stepNumber {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #7CB9D4, #5CA5BD);
-  color: white;
-  border-radius: 50%;
+  width: auto;
+  height: auto;
+  background: transparent;
+  color: #A8D8EA;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 2.2rem;
+  font-size: 3rem;
   margin: 0 auto 20px;
-  box-shadow: 0 6px 18px rgba(124, 185, 212, 0.25);
+  box-shadow: none;
   transition: all 0.4s ease;
+  letter-spacing: 2px;
 }
 
 .step:hover .stepNumber {
-  transform: scale(1.15);
-  box-shadow: 0 10px 28px rgba(124, 185, 212, 0.35);
+  transform: scale(1.1);
+  color: #7CB9D4;
+  box-shadow: none;
 }
 
 .step h4 {
