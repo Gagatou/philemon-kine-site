@@ -826,16 +826,27 @@
     gap: var(--spacing-sm);
   }
 
-  .logo {
+  .navWrapper .logo {
+    display: flex !important;
+    flex-direction: column;
     font-size: 0.9rem;
     font-weight: 700;
     line-height: 1.1;
     width: auto;
     max-width: 100px;
+    gap: 0 !important;
+    border-radius: 0 !important;
+    background: none !important;
+    padding: 0 !important;
+    height: auto !important;
   }
 
   .logoIcon {
     display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .navLinks {
