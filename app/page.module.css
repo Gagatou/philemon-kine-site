@@ -817,19 +817,36 @@
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .stickyNav {
-    padding: 0 var(--spacing-md);
+    padding: 0;
   }
 
   .navWrapper {
     height: 60px;
+    padding: 0 var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .logo {
+    gap: 8px;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .logoIcon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
   }
 
   .navLinks {
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
+    flex-wrap: nowrap;
   }
 
   .navLinks li button {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    padding: 0;
+    white-space: nowrap;
   }
 
   .hero {
