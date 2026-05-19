@@ -859,7 +859,7 @@
     gap: var(--spacing-xl);
   }
 
-  .logo {
+  .heroLogo .logo {
     width: 100px;
     height: 100px;
   }
