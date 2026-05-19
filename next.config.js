@@ -22,6 +22,18 @@ const nextConfig = {
       ],
     },
   ],
+  rewrites: async () => ({
+    beforeFiles: [
+      {
+        source: '/about',
+        destination: '/',
+      },
+      {
+        source: '/contact',
+        destination: '/',
+      },
+    ],
+  }),
 }
 
 module.exports = nextConfig
