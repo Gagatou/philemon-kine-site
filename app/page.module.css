@@ -489,22 +489,24 @@
 }
 
 .steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  display: flex;
+  gap: 20px;
   align-items: center;
-  max-width: 1200px;
+  justify-content: center;
+  max-width: 100%;
   margin: 0 auto;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .step {
   background: linear-gradient(135deg, #ffffff 0%, rgba(168, 216, 234, 0.08) 100%);
-  padding: 70px 40px;
+  padding: 50px 30px;
   border-radius: 20px;
   text-align: center;
   border: 2px solid #E0EEF2;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 360px;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -512,6 +514,8 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
+  flex: 1;
+  min-width: 200px;
 }
 
 .step::before {
