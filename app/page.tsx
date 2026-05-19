@@ -313,24 +313,28 @@ export default function Home() {
             <h3>Comment ça fonctionne ?</h3>
             <div className={styles.steps}>
               <div className={styles.step}>
+                <div className={styles.stepIcon}><MessageCircle size={40} color="white" /></div>
                 <div className={styles.stepNumber}>1</div>
                 <h4>Contactez-moi</h4>
                 <p>Via WhatsApp, appel ou SMS</p>
               </div>
               <div className={styles.arrow}>→</div>
               <div className={styles.step}>
+                <div className={styles.stepIcon}><Clock size={40} color="white" /></div>
                 <div className={styles.stepNumber}>2</div>
                 <h4>Confirmez votre RDV</h4>
                 <p>Choix de la date et heure</p>
               </div>
               <div className={styles.arrow}>→</div>
               <div className={styles.step}>
+                <div className={styles.stepIcon}><Heart size={40} color="white" /></div>
                 <div className={styles.stepNumber}>3</div>
                 <h4>Première séance</h4>
                 <p>Bilan et plan de traitement</p>
               </div>
               <div className={styles.arrow}>→</div>
               <div className={styles.step}>
+                <div className={styles.stepIcon}><Footprints size={40} color="white" /></div>
                 <div className={styles.stepNumber}>4</div>
                 <h4>Suivi régulier</h4>
                 <p>Progression adaptée</p>
