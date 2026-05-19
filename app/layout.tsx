@@ -16,10 +16,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Philémon Eydoux - Kinésithérapeute à Levallois-Perret',
-  description: 'Kinésithérapeute spécialisé en rééducation, réathlétisation et suivi du handicap à Levallois-Perret (92). Prendre rendez-vous en ligne.',
+  title: 'Philémon Eydoux - Kinésithérapeute à domicile à Levallois-Perret',
+  description: 'Kinésithérapeute à domicile spécialisé en rééducation à domicile, accompagnement personnes âgées et suivi du handicap à Levallois-Perret (92). Je me déplace chez vous. Prendre rendez-vous en ligne.',
   viewport: 'width=device-width, initial-scale=1',
-  keywords: 'kinésithérapeute, Levallois-Perret, rééducation, réathlétisation, suivi handicap, séance de kiné',
+  keywords: 'kinésithérapeute à domicile, Levallois-Perret, rééducation à domicile, personnes âgées, suivi handicap, séance de kiné',
   authors: [{ name: 'Philémon Eydoux' }],
   creator: 'Philémon Eydoux',
   robots: {
@@ -34,14 +34,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://philemon-kine-site.vercel.app',
-    title: 'Philémon Eydoux - Kinésithérapeute à Levallois-Perret',
-    description: 'Kinésithérapeute spécialisé en rééducation, réathlétisation et suivi du handicap',
-    siteName: 'Philémon Eydoux - Kinésithérapeute',
+    title: 'Philémon Eydoux - Kinésithérapeute à domicile',
+    description: 'Kinésithérapeute à domicile - rééducation, personnes âgées et suivi du handicap à domicile',
+    siteName: 'Philémon Eydoux - Kinésithérapeute à domicile',
   },
   twitter: {
     card: 'summary',
-    title: 'Philémon Eydoux - Kinésithérapeute',
-    description: 'Rééducation, réathlétisation et suivi du handicap à Levallois-Perret',
+    title: 'Philémon Eydoux - Kinésithérapeute à domicile',
+    description: 'Rééducation et accompagnement à domicile - Levallois-Perret',
   },
 }
 
@@ -62,8 +62,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'Philémon Eydoux - Kinésithérapeute',
-              description: 'Kinésithérapeute spécialisé en rééducation, réathlétisation et suivi du handicap',
+              name: 'Philémon Eydoux - Kinésithérapeute à domicile',
+              description: 'Kinésithérapeute à domicile spécialisé en rééducation, accompagnement des personnes âgées et suivi du handicap',
               image: 'https://philemon-kine-site.vercel.app/og-image.jpg',
               url: 'https://philemon-kine-site.vercel.app',
               telephone: '+33635550050',

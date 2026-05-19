@@ -135,7 +135,7 @@ export default function Home() {
                 </svg>
               </div>
               <h1>Philémon Eydoux</h1>
-              <p className={styles.subtitle}>Kinésithérapeute</p>
+              <p className={styles.subtitle}>Kinésithérapeute à domicile</p>
             </div>
 
             <div className={styles.heroInfo}>
@@ -176,23 +176,23 @@ export default function Home() {
           <div className={styles.servicesGrid}>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>👴</div>
-              <h3>Accompagnement personnes âgées</h3>
-              <p>Suivi spécialisé pour maintenir la mobilité et l'autonomie</p>
+              <h3>Accompagnement personnes âgées à domicile</h3>
+              <p>Suivi spécialisé à domicile pour maintenir la mobilité et l'autonomie</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>🏠</div>
               <h3>Kinésithérapeute à domicile</h3>
-              <p>Séances de rééducation directement chez vous</p>
+              <p>Séances de rééducation directement chez vous, sans déplacement</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>🏥</div>
-              <h3>Rééducation</h3>
-              <p>Suivi post-opératoire et réadaptation fonctionnelle</p>
+              <h3>Rééducation à domicile</h3>
+              <p>Suivi post-opératoire et réadaptation fonctionnelle à votre domicile</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>👨‍🦽</div>
-              <h3>Suivi du handicap</h3>
-              <p>Prise en charge adaptée aux besoins spécifiques</p>
+              <h3>Suivi du handicap à domicile</h3>
+              <p>Prise en charge adaptée à domicile aux besoins spécifiques</p>
             </div>
           </div>
         </div>
@@ -206,13 +206,14 @@ export default function Home() {
           <div className={styles.aboutContent}>
             <div className={styles.story}>
               <p>
-                Je suis Philémon Eydoux, kinésithérapeute spécialisé dans l'accompagnement des personnes âgées et le suivi à domicile.
-                Mon objectif est d'accompagner mes patients vers le bien-être et le maintien de leur autonomie.
+                Je suis Philémon Eydoux, kinésithérapeute à domicile spécialisé dans l'accompagnement des personnes âgées.
+                Je me déplace à votre domicile pour vous proposer des séances de rééducation flexibles et adaptées.
+                Mon objectif est d'accompagner mes patients vers le bien-être et le maintien de leur autonomie à domicile.
               </p>
               <p>
-                Diplômé en kinésithérapie, je suis spécialisé dans la rééducation fonctionnelle et l'accompagnement
-                à la remise en mobilité. J'ai également de l'expérience solide dans l'accompagnement des enfants
-                atteints de handicap moteur. Mon approche combine rigueur scientifique et bienveillance.
+                Diplômé en kinésithérapie, je suis spécialisé dans la rééducation fonctionnelle à domicile et l'accompagnement
+                à la remise en mobilité. J'ai également de l'expérience solide dans l'accompagnement à domicile des enfants
+                atteints de handicap moteur. Mon approche combine rigueur scientifique et bienveillance, directement chez vous.
               </p>
             </div>
 
@@ -239,20 +240,20 @@ export default function Home() {
             <h3>Mes domaines d'expertise</h3>
             <div className={styles.expertiseGrid}>
               <div className={styles.expertiseItem}>
-                <h4>Accompagnement personnes âgées</h4>
-                <p>Maintien de la mobilité et de l'autonomie chez les seniors</p>
+                <h4>Accompagnement personnes âgées à domicile</h4>
+                <p>Maintien de la mobilité et de l'autonomie chez les seniors, directement à domicile</p>
               </div>
               <div className={styles.expertiseItem}>
-                <h4>Séances à domicile</h4>
-                <p>Rééducation flexible et accessible directement à votre domicile</p>
+                <h4>Rééducation à domicile</h4>
+                <p>Suivi post-opératoire et réadaptation flexible à votre domicile</p>
               </div>
               <div className={styles.expertiseItem}>
-                <h4>Rééducation fonctionnelle</h4>
-                <p>Suivi post-opératoire et réadaptation suite à une blessure</p>
+                <h4>Suivi du handicap à domicile</h4>
+                <p>Prise en charge spécialisée à domicile des enfants et adultes en situation de handicap</p>
               </div>
               <div className={styles.expertiseItem}>
-                <h4>Suivi du handicap moteur</h4>
-                <p>Prise en charge spécialisée des enfants et adultes en situation de handicap</p>
+                <h4>Mobilité et bien-être à domicile</h4>
+                <p>Amélioration de la qualité de vie et du confort au quotidien chez vous</p>
               </div>
             </div>
           </div>
@@ -351,7 +352,7 @@ export default function Home() {
                 { q: 'Quel est le délai pour le premier RDV ?', a: 'Généralement sous 2-3 jours. Pour les urgences, je fais de mon mieux pour trouver une place rapidement.' },
                 { q: 'Acceptez-vous les enfants ?', a: 'Absolument ! J\'ai de l\'expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.' },
                 { q: 'Êtes-vous conventionné Sécu ?', a: 'Oui, je suis conventionné. Les tarifs respectent le barème de la Sécurité Sociale.' },
-                { q: 'Proposez-vous des séances à domicile ?', a: 'Oui, possibilité de séances à domicile avec un supplément. À discuter lors du premier contact.' },
+                { q: 'Proposez-vous des séances à domicile ?', a: 'Oui, absolument ! Je suis kinésithérapeute à domicile. Toutes mes séances se déroulent directement chez vous pour plus de confort et d\'accessibilité.' },
                 { q: 'Que faire en cas d\'annulation ?', a: 'Veuillez m\'avertir au minimum 24 heures à l\'avance pour éviter des frais d\'annulation.' },
                 { q: 'Comment suis-je remboursé ?', a: 'Les séances sont remboursées par la Sécurité Sociale sur prescription médicale. Vérifiez votre couverture mutuelle pour les dépassements éventuels.' },
                 { q: 'Y a-t-il une réduction possible ?', a: 'Les bénéficiaires de l\'AME ont accès à des tarifs réduits. N\'hésitez pas à m\'en parler lors de votre première visite.' },
@@ -376,8 +377,8 @@ export default function Home() {
       {/* Final CTA */}
       <section className={styles.finalCta} data-animate>
         <div className="container">
-          <h2>Prêt à commencer votre suivi ?</h2>
-          <p>Contactez-moi dès maintenant via WhatsApp</p>
+          <h2>Prêt à commencer votre suivi à domicile ?</h2>
+          <p>Contactez-moi dès maintenant via WhatsApp pour planifier vos séances à domicile</p>
           <a href={whatsappUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
             Ouvrir WhatsApp
           </a>
@@ -390,9 +391,9 @@ export default function Home() {
           <div className={styles.footerContent}>
             <div className={styles.brand}>
               <h3>Philémon Eydoux</h3>
-              <p>Kinésithérapeute</p>
+              <p>Kinésithérapeute à domicile</p>
               <p className={styles.tagline}>
-                Votre partenaire pour le bien-être et la réathlétisation
+                Votre partenaire pour le bien-être et la mobilité à domicile
               </p>
             </div>
 
