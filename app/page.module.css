@@ -821,20 +821,18 @@
   }
 
   .navWrapper {
-    height: 60px;
-    padding: 0 var(--spacing-sm);
+    height: auto;
+    padding: 8px var(--spacing-sm);
     gap: var(--spacing-sm);
   }
 
   .logo {
-    gap: 0;
     font-size: 0.9rem;
-    flex-direction: column;
-    justify-content: center;
+    line-height: 1.2;
   }
 
   .logoIcon {
-    display: none;
+    display: none !important;
   }
 
   .navLinks {
