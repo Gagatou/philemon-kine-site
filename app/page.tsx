@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown } from 'lucide-react'
+import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown, Home } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import styles from './page.module.css'
 
@@ -175,24 +175,24 @@ export default function Home() {
           <h2>Mes services</h2>
           <div className={styles.servicesGrid}>
             <div className={styles.serviceCard}>
+              <div className={styles.serviceIcon}>👴</div>
+              <h3>Accompagnement personnes âgées</h3>
+              <p>Suivi spécialisé pour maintenir la mobilité et l'autonomie</p>
+            </div>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIcon}>🏠</div>
+              <h3>Kinésithérapeute à domicile</h3>
+              <p>Séances de rééducation directement chez vous</p>
+            </div>
+            <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>🏥</div>
               <h3>Rééducation</h3>
               <p>Suivi post-opératoire et réadaptation fonctionnelle</p>
             </div>
             <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>⚽</div>
-              <h3>Réathlétisation</h3>
-              <p>Reprise du sport en toute sécurité et performance</p>
-            </div>
-            <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>👨‍🦽</div>
               <h3>Suivi du handicap</h3>
               <p>Prise en charge adaptée aux besoins spécifiques</p>
-            </div>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>💪</div>
-              <h3>Prévention</h3>
-              <p>Conseils et exercices pour prévenir les blessures</p>
             </div>
           </div>
         </div>
@@ -206,8 +206,8 @@ export default function Home() {
           <div className={styles.aboutContent}>
             <div className={styles.story}>
               <p>
-                Je suis Philémon Eydoux, kinésithérapeute passionné par la rééducation et la réathlétisation.
-                Mon objectif est d'accompagner mes patients vers le bien-être et le retour à leurs activités.
+                Je suis Philémon Eydoux, kinésithérapeute spécialisé dans l'accompagnement des personnes âgées et le suivi à domicile.
+                Mon objectif est d'accompagner mes patients vers le bien-être et le maintien de leur autonomie.
               </p>
               <p>
                 Diplômé en kinésithérapie, je suis spécialisé dans la rééducation fonctionnelle et l'accompagnement
@@ -228,9 +228,9 @@ export default function Home() {
                 <p>Accompagnement adapté pour les enfants et adultes en situation de handicap</p>
               </div>
               <div className={styles.highlightCard}>
-                <Footprints size={32} color="#7CB9D4" />
-                <h3>Sportif passionné</h3>
-                <p>Trail runner et sportif, je comprends les enjeux de la réathlétisation</p>
+                <Home size={32} color="#7CB9D4" />
+                <h3>Suivi à domicile</h3>
+                <p>Séances flexibles chez vous pour plus de confort et d'accessibilité</p>
               </div>
             </div>
           </div>
@@ -239,20 +239,20 @@ export default function Home() {
             <h3>Mes domaines d'expertise</h3>
             <div className={styles.expertiseGrid}>
               <div className={styles.expertiseItem}>
+                <h4>Accompagnement personnes âgées</h4>
+                <p>Maintien de la mobilité et de l'autonomie chez les seniors</p>
+              </div>
+              <div className={styles.expertiseItem}>
+                <h4>Séances à domicile</h4>
+                <p>Rééducation flexible et accessible directement à votre domicile</p>
+              </div>
+              <div className={styles.expertiseItem}>
                 <h4>Rééducation fonctionnelle</h4>
                 <p>Suivi post-opératoire et réadaptation suite à une blessure</p>
               </div>
               <div className={styles.expertiseItem}>
-                <h4>Réathlétisation sportive</h4>
-                <p>Reprise progressive du sport en toute sécurité pour athlètes et amateurs</p>
-              </div>
-              <div className={styles.expertiseItem}>
                 <h4>Suivi du handicap moteur</h4>
-                <p>Prise en charge spécialisée des enfants atteints de handicap moteur</p>
-              </div>
-              <div className={styles.expertiseItem}>
-                <h4>Prévention des blessures</h4>
-                <p>Conseils et programme d'exercices pour prévenir les pathologies</p>
+                <p>Prise en charge spécialisée des enfants et adultes en situation de handicap</p>
               </div>
             </div>
           </div>
