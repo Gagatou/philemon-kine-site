@@ -488,7 +488,7 @@
 .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 30px;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
@@ -496,12 +496,12 @@
 
 .step {
   background: white;
-  padding: 50px 30px;
+  padding: 70px 40px;
   border-radius: 16px;
   text-align: center;
   border: 2px solid #E0EEF2;
   transition: all 0.3s ease;
-  min-height: 280px;
+  min-height: 360px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -515,8 +515,8 @@
 }
 
 .stepNumber {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background: linear-gradient(135deg, #7CB9D4, #5CA5BD);
   color: white;
   border-radius: 50%;
@@ -524,20 +524,22 @@
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.8rem;
-  margin: 0 auto 20px;
+  font-size: 2.2rem;
+  margin: 0 auto 25px;
 }
 
 .step h4 {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
+  margin-bottom: 18px;
+  font-size: 1.35rem;
   color: #2C3E50;
+  font-weight: 700;
 }
 
 .step p {
   color: #666;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   margin: 0;
+  line-height: 1.6;
 }
 
 .arrow {

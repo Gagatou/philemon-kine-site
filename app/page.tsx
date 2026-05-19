@@ -84,6 +84,22 @@ export default function Home() {
               </li>
               <li>
                 <button
+                  onClick={() => scrollToSection('services')}
+                  className={activeSection === 'services' ? styles.active : ''}
+                >
+                  Mes services
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('faq')}
+                  className={activeSection === 'faq' ? styles.active : ''}
+                >
+                  FAQ
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => scrollToSection('contact')}
                   className={`${styles.ctaBtn} ${activeSection === 'contact' ? styles.active : ''}`}
                 >
@@ -154,7 +170,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES SECTION */}
-      <section className={styles.services} data-animate>
+      <section id="services" className={styles.services} data-animate>
         <div className="container">
           <h2>Mes services</h2>
           <div className={styles.servicesGrid}>
@@ -323,7 +339,7 @@ export default function Home() {
           </div>
 
           {/* FAQ */}
-          <div className={styles.faq} data-animate>
+          <div id="faq" className={styles.faq} data-animate>
             <h3>Questions fréquentes</h3>
             <div className={styles.faqGrid}>
               {[
