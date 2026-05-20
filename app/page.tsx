@@ -264,30 +264,41 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Contact Info */}
+            {/* Contact Info - Modern Bubble Design */}
             <div className={styles.infoSection}>
               <div className={styles.infoCard}>
-                <Phone size={32} color="#7CB9D4" />
-                <h3>Appel direct</h3>
-                <p className={styles.phoneNumber}>06&nbsp;35&nbsp;55&nbsp;00&nbsp;50</p>
-                <small>Disponible du lundi au vendredi de 9h à 18h</small>
-              </div>
-
-              <div className={styles.infoCard}>
-                <MapPin size={32} color="#7CB9D4" />
-                <div style={{ flex: 1 }}>
-                  <h3>Mes lieux d'intervention</h3>
-                  <p style={{ marginBottom: '8px', margin: 0, color: '#555' }}>📍 Levallois-Perret</p>
-                  <p style={{ margin: 0, color: '#555' }}>📍 Neuilly-sur-Seine</p>
+                <div className={styles.iconBubble}>
+                  <Phone size={36} color="white" />
+                </div>
+                <div className={styles.cardContent}>
+                  <h3>Appel direct</h3>
+                  <p className={styles.highlight}>06&nbsp;35&nbsp;55&nbsp;00&nbsp;50</p>
+                  <p className={styles.subtitle}>Lundi-vendredi, 9h-18h</p>
                 </div>
               </div>
 
               <div className={styles.infoCard}>
-                <Clock size={32} color="#7CB9D4" />
-                <h3>Horaires</h3>
-                <p>Lundi, mercredi au vendredi</p>
-                <p>9h00 - 18h00</p>
-                <small>(Fermé le mardi)</small>
+                <div className={styles.iconBubble}>
+                  <MapPin size={36} color="white" />
+                </div>
+                <div className={styles.cardContent}>
+                  <h3>Lieux d'intervention</h3>
+                  <div className={styles.locationList}>
+                    <p><span className={styles.locationPin}>📍</span> Levallois-Perret</p>
+                    <p><span className={styles.locationPin}>📍</span> Neuilly-sur-Seine</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.infoCard}>
+                <div className={styles.iconBubble}>
+                  <Clock size={36} color="white" />
+                </div>
+                <div className={styles.cardContent}>
+                  <h3>Horaires</h3>
+                  <p className={styles.highlight}>9h00 - 18h00</p>
+                  <p className={styles.subtitle}>Lundi, mercredi-vendredi<br />(Fermé le mardi)</p>
+                </div>
               </div>
             </div>
           </div>

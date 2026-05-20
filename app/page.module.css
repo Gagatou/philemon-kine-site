@@ -470,43 +470,112 @@
   margin-bottom: 0 !important;
 }
 
+/* INFO SECTION - MODERN BUBBLE CARDS */
 .infoSection {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin: 60px 0;
 }
 
 .infoCard {
   background: white;
-  padding: 30px;
-  border-radius: 12px;
-  border-left: 4px solid #7CB9D4;
+  padding: 40px 32px;
+  border-radius: 16px;
   display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all var(--transition-base);
+  border: 1px solid #E8F3F7;
+  position: relative;
+  overflow: hidden;
+}
+
+.infoCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(124, 185, 212, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.infoCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(124, 185, 212, 0.15);
+  border-color: #D4EAF3;
+}
+
+.iconBubble {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #7CB9D4, #5CA5BD);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 20px rgba(124, 185, 212, 0.3);
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.infoCard:hover .iconBubble {
+  transform: scale(1.1);
+  box-shadow: 0 8px 28px rgba(124, 185, 212, 0.4);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .infoCard h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 16px 0;
   color: #2C3E50;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .infoCard p {
-  margin: 5px 0;
+  margin: 8px 0;
   color: #666;
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.phoneNumber {
-  white-space: nowrap;
+.highlight {
+  color: #5CA5BD;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 12px 0 !important;
 }
 
-.infoCard small {
-  display: block;
+.subtitle {
   color: #999;
-  font-size: 0.85rem;
-  margin-top: 5px;
+  font-size: 0.9rem;
+  margin-top: 12px !important;
+}
+
+.locationList p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.locationPin {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
 }
 
 /* PROCESS SECTION */
@@ -937,6 +1006,21 @@
     grid-template-columns: 1fr;
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-2xl);
+  }
+
+  .infoSection {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 40px 0;
+  }
+
+  .infoCard {
+    padding: 32px 24px;
+  }
+
+  .iconBubble {
+    width: 70px;
+    height: 70px;
   }
 
   .whatsappCard {
