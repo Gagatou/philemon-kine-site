@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown, Home as HomeIcon } from 'lucide-react'
+import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown, Home as HomeIcon, Users, Activity, Accessibility, Stethoscope } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import styles from './page.module.css'
 
@@ -175,24 +175,24 @@ export default function Home() {
           <h2>Mes services</h2>
           <div className={styles.servicesGrid}>
             <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>👴</div>
+              <div className={styles.serviceIcon}><Users size={48} color="white" /></div>
               <h3>Accompagnement personnes âgées à domicile</h3>
-              <p>Suivi spécialisé à domicile pour maintenir la mobilité et l'autonomie</p>
+              <p>Suivi spécialisé à domicile pour maintenir la mobilité et l'autonomie des seniors. J'accompagne les personnes âgées avec des séances adaptées à domicile.</p>
             </div>
             <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>🏠</div>
+              <div className={styles.serviceIcon}><HomeIcon size={48} color="white" /></div>
               <h3>Kinésithérapeute à domicile</h3>
-              <p>Séances de rééducation directement chez vous, sans déplacement</p>
+              <p>Séances de rééducation directement chez vous, sans déplacement. Flexibilité et confort au cœur de mon service à domicile.</p>
             </div>
             <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>🏥</div>
+              <div className={styles.serviceIcon}><Stethoscope size={48} color="white" /></div>
               <h3>Rééducation à domicile</h3>
-              <p>Suivi post-opératoire et réadaptation fonctionnelle à votre domicile</p>
+              <p>Suivi post-opératoire et réadaptation fonctionnelle à votre domicile. Récupération progressive dans le confort de votre maison.</p>
             </div>
             <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}>👨‍🦽</div>
+              <div className={styles.serviceIcon}><Accessibility size={48} color="white" /></div>
               <h3>Suivi du handicap à domicile</h3>
-              <p>Prise en charge adaptée à domicile aux besoins spécifiques</p>
+              <p>Prise en charge adaptée à domicile pour enfants et adultes en situation de handicap. Accompagnement personnalisé et bienveillant chez vous.</p>
             </div>
           </div>
         </div>
@@ -236,27 +236,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={styles.expertise}>
-            <h3>Mes domaines d'expertise</h3>
-            <div className={styles.expertiseGrid}>
-              <div className={styles.expertiseItem}>
-                <h4>Accompagnement personnes âgées à domicile</h4>
-                <p>Maintien de la mobilité et de l'autonomie chez les seniors, directement à domicile</p>
-              </div>
-              <div className={styles.expertiseItem}>
-                <h4>Rééducation à domicile</h4>
-                <p>Suivi post-opératoire et réadaptation flexible à votre domicile</p>
-              </div>
-              <div className={styles.expertiseItem}>
-                <h4>Suivi du handicap à domicile</h4>
-                <p>Prise en charge spécialisée à domicile des enfants et adultes en situation de handicap</p>
-              </div>
-              <div className={styles.expertiseItem}>
-                <h4>Mobilité et bien-être à domicile</h4>
-                <p>Amélioration de la qualité de vie et du confort au quotidien chez vous</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -295,16 +274,20 @@ export default function Home() {
 
               <div className={styles.infoCard}>
                 <MapPin size={32} color="#7CB9D4" />
-                <h3>Localisation</h3>
-                <p>Levallois-Perret</p>
-                <p>(Île-de-France)</p>
+                <h3>Mes lieux d'intervention</h3>
+                <div style={{ marginTop: '12px' }}>
+                  <p style={{ marginBottom: '8px' }}>📍 Levallois-Perret</p>
+                  <p>📍 Neuilly-sur-Seine</p>
+                </div>
+                <small>(Île-de-France)</small>
               </div>
 
               <div className={styles.infoCard}>
                 <Clock size={32} color="#7CB9D4" />
                 <h3>Horaires</h3>
-                <p>Lundi au vendredi</p>
+                <p>Lundi, mercredi au vendredi</p>
                 <p>9h00 - 18h00</p>
+                <small>(Fermé le mardi)</small>
               </div>
             </div>
           </div>
