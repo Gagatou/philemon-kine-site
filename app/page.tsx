@@ -142,8 +142,9 @@ export default function Home() {
               <div className={styles.infoCard}>
                 <MapPin size={24} color="#7CB9D4" />
                 <div>
-                  <h3>Localisation</h3>
-                  <p>Levallois-Perret (92)</p>
+                  <h3>Lieux d'intervention</h3>
+                  <p style={{ marginBottom: '4px' }}>Levallois-Perret (92)</p>
+                  <p>Neuilly-sur-Seine (92)</p>
                 </div>
               </div>
               <div className={styles.infoCard}>
@@ -274,12 +275,11 @@ export default function Home() {
 
               <div className={styles.infoCard}>
                 <MapPin size={32} color="#7CB9D4" />
-                <h3>Mes lieux d'intervention</h3>
-                <div style={{ marginTop: '12px' }}>
-                  <p style={{ marginBottom: '8px' }}>📍 Levallois-Perret</p>
-                  <p>📍 Neuilly-sur-Seine</p>
+                <div style={{ flex: 1 }}>
+                  <h3>Mes lieux d'intervention</h3>
+                  <p style={{ marginBottom: '8px', margin: 0, color: '#555' }}>📍 Levallois-Perret</p>
+                  <p style={{ margin: 0, color: '#555' }}>📍 Neuilly-sur-Seine</p>
                 </div>
-                <small>(Île-de-France)</small>
               </div>
 
               <div className={styles.infoCard}>
