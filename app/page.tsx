@@ -12,6 +12,7 @@ import {
   Users,
   Accessibility,
   Stethoscope,
+  Baby,
   Award,
   Heart,
   ShieldCheck,
@@ -49,6 +50,11 @@ const SERVICES = [
     icon: Accessibility,
     title: 'Suivi du handicap',
     text: 'Prise en charge adaptée pour enfants et adultes en situation de handicap moteur. Un accompagnement personnalisé et bienveillant.',
+  },
+  {
+    icon: Baby,
+    title: 'Pédiatrie',
+    text: 'Séances adaptées aux bébés, enfants et adolescents : développement moteur, rééducation, suivi du handicap. Dans un cadre ludique et rassurant, à la maison.',
   },
   {
     icon: HomeIcon,
@@ -200,11 +206,11 @@ export default function Home() {
           <div className={`container ${styles.aboutGrid}`}>
             <div>
               <p className={styles.kicker}>Qui je suis</p>
-              <h2>Rigueur du soin, chaleur de la relation</h2>
+              <h2>Rigueur du soin</h2>
             </div>
             <div className={styles.aboutBody}>
               <p>
-                Je suis Philémon Eydoux, kinésithérapeute à domicile. J&apos;accompagne en particulier les personnes
+                Je suis Philémon Eydoux, kinésithérapeute à domicile. J&apos;accompagne entre autres les personnes
                 âgées, avec des séances souples et adaptées, pour préserver leur bien-être et leur autonomie chez elles.
               </p>
               <p>

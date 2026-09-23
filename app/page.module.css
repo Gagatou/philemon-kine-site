@@ -236,8 +236,16 @@
 /* Services */
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
+}
+
+.serviceCard {
+  grid-column: span 2;
+}
+
+.serviceCard:nth-child(n + 4) {
+  grid-column: span 3;
 }
 
 .serviceCard {
@@ -554,6 +562,15 @@
   .servicesGrid,
   .steps {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .serviceCard,
+  .serviceCard:nth-child(n + 4) {
+    grid-column: auto;
+  }
+
+  .serviceCard:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .steps {
