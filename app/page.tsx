@@ -205,8 +205,7 @@ export default function Home() {
         <section id="about" className={`${styles.section} ${styles.aboutSection}`}>
           <div className={`container ${styles.aboutGrid}`}>
             <div>
-              <p className={styles.kicker}>Qui je suis</p>
-              <h2>Rigueur du soin</h2>
+              <h2>Qui suis-je&nbsp;?</h2>
             </div>
             <div className={styles.aboutBody}>
               <p>
