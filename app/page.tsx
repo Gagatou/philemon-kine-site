@@ -1,433 +1,353 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown, Home as HomeIcon, Users, Activity, Accessibility, Stethoscope } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import {
+  MapPin,
+  Phone,
+  ArrowRight,
+  MessageCircle,
+  Clock,
+  Home as HomeIcon,
+  Users,
+  Accessibility,
+  Stethoscope,
+  Award,
+  Heart,
+  ShieldCheck,
+  Menu,
+  X,
+  Plus,
+} from 'lucide-react'
 import styles from './page.module.css'
 
 const PHONE_NUMBER = '33635550050'
+const PHONE_DISPLAY = '06 35 55 00 50'
+const PHONE_HREF = 'tel:+33635550050'
 const WHATSAPP_MESSAGE = 'Bonjour Philémon, je souhaiterais prendre un rendez-vous.'
+const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+
+const NAV_LINKS = [
+  { id: 'services', label: 'Services' },
+  { id: 'about', label: 'Qui je suis' },
+  { id: 'process', label: 'Déroulé' },
+  { id: 'faq', label: 'FAQ' },
+]
+
+const SERVICES = [
+  {
+    icon: Users,
+    title: 'Personnes âgées',
+    text: "Maintenir la mobilité, l'équilibre et l'autonomie au quotidien, avec des séances adaptées au rythme de chacun.",
+  },
+  {
+    icon: Stethoscope,
+    title: 'Rééducation post-opératoire',
+    text: 'Suivi après une opération ou une blessure : récupération progressive et réadaptation fonctionnelle, sans vous déplacer.',
+  },
+  {
+    icon: Accessibility,
+    title: 'Suivi du handicap',
+    text: 'Prise en charge adaptée pour enfants et adultes en situation de handicap moteur. Un accompagnement personnalisé et bienveillant.',
+  },
+  {
+    icon: HomeIcon,
+    title: 'Kiné à domicile',
+    text: "Toutes les séances ont lieu chez vous. Pas de trajet, pas de salle d'attente : le soin vient à vous.",
+  },
+]
+
+const STEPS = [
+  { title: 'Contactez-moi', text: 'Par WhatsApp, appel ou SMS.' },
+  { title: 'Fixons un créneau', text: 'On choisit ensemble la date et l’heure.' },
+  { title: 'Premier bilan', text: 'Évaluation chez vous et plan de traitement.' },
+  { title: 'Suivi régulier', text: 'Des séances qui évoluent avec vos progrès.' },
+]
+
+const FAQ = [
+  { q: 'Ai-je besoin d’une ordonnance ?', a: 'Pour être remboursé par la Sécurité sociale, oui. Une séance sans ordonnance reste possible.' },
+  { q: 'Quel est le délai pour un premier rendez-vous ?', a: 'Généralement sous 2 à 3 jours. Pour les situations urgentes, je fais au mieux pour trouver une place rapidement.' },
+  { q: 'Prenez-vous en charge les enfants ?', a: 'Oui. J’ai de l’expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.' },
+  { q: 'Êtes-vous conventionné ?', a: 'Oui, je suis conventionné. Les tarifs respectent le barème de la Sécurité sociale.' },
+  { q: 'Comment suis-je remboursé ?', a: 'Les séances sont remboursées par la Sécurité sociale sur prescription médicale. Vérifiez votre mutuelle pour les éventuels compléments.' },
+  { q: 'Et en cas d’annulation ?', a: 'Merci de me prévenir au moins 24 heures à l’avance.' },
+  { q: 'Y a-t-il des tarifs réduits ?', a: 'Les bénéficiaires de l’AME ont accès à des tarifs réduits. Parlons-en lors de la première séance.' },
+]
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState('home')
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
-  const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    setIsDarkMode(prefersDark)
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.style.colorScheme = 'dark'
-    } else {
-      document.documentElement.style.colorScheme = 'light'
-    }
-  }, [isDarkMode])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-    )
-
-    document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
-  const scrollToSection = (sectionId: string) => {
-    setActiveSection(sectionId)
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-  }
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+  }, [menuOpen])
 
   return (
     <>
-      {/* Sticky Navigation - Updated */}
-      <nav className={styles.stickyNav}>
-        <div className="container">
-          <div className={styles.navWrapper}>
-            <div className={styles.logo}>
-              <div className={styles.logoIcon}>PE</div>
-              <span>Philémon Eydoux</span>
-            </div>
-            <ul className={styles.navLinks}>
-              <li>
-                <button
-                  onClick={() => scrollToSection('home')}
-                  className={activeSection === 'home' ? styles.active : ''}
-                >
-                  Accueil
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('about')}
-                  className={activeSection === 'about' ? styles.active : ''}
-                >
-                  Qui je suis
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('services')}
-                  className={activeSection === 'services' ? styles.active : ''}
-                >
-                  Mes services
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('faq')}
-                  className={activeSection === 'faq' ? styles.active : ''}
-                >
-                  FAQ
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className={`${styles.ctaBtn} ${activeSection === 'contact' ? styles.active : ''}`}
-                >
-                  Me contacter
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={toggleDarkMode}
-                  className={styles.darkModeBtn}
-                  aria-label="Toggle dark mode"
-                  title={isDarkMode ? 'Mode clair' : 'Mode sombre'}
-                >
-                  {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      {/* HERO SECTION */}
-      <section id="home" className={styles.hero}>
-        <div className="container">
-          <div className={styles.heroContent}>
-            <div className={styles.heroLogo}>
-              <div className={styles.heroPhoto}>
-                <Image
-                  src="/philemon-eydoux.jpg"
-                  alt="Philémon Eydoux, kinésithérapeute à domicile"
-                  fill
-                  sizes="(max-width: 768px) 140px, 200px"
-                  priority
-                />
-              </div>
-              <h1>Philémon Eydoux</h1>
-              <p className={styles.subtitle}>Kinésithérapeute à domicile</p>
-            </div>
-
-            <div className={styles.heroInfo}>
-              <div className={styles.infoCard}>
-                <MapPin size={24} color="#7CB9D4" />
-                <div>
-                  <h3>Lieux d'intervention</h3>
-                  <p style={{ marginBottom: '4px' }}>Levallois-Perret (92)</p>
-                  <p>Neuilly-sur-Seine (92)</p>
-                </div>
-              </div>
-              <div className={styles.infoCard}>
-                <Phone size={24} color="#7CB9D4" />
-                <div>
-                  <h3>Contact</h3>
-                  <p>06 35 55 00 50</p>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.cta}>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="btn btn-primary"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-              >
-                Prendre rendez-vous
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES SECTION */}
-      <section id="services" className={styles.services} data-animate>
-        <div className="container">
-          <h2>Mes services</h2>
-          <div className={styles.servicesGrid}>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}><Users size={48} color="white" /></div>
-              <h3>Accompagnement personnes âgées à domicile</h3>
-              <p>Suivi spécialisé à domicile pour maintenir la mobilité et l'autonomie des seniors. J'accompagne les personnes âgées avec des séances adaptées à domicile.</p>
-            </div>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}><HomeIcon size={48} color="white" /></div>
-              <h3>Kinésithérapeute à domicile</h3>
-              <p>Séances de rééducation directement chez vous, sans déplacement. Flexibilité et confort au cœur de mon service à domicile.</p>
-            </div>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}><Stethoscope size={48} color="white" /></div>
-              <h3>Rééducation à domicile</h3>
-              <p>Suivi post-opératoire et réadaptation fonctionnelle à votre domicile. Récupération progressive dans le confort de votre maison.</p>
-            </div>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIcon}><Accessibility size={48} color="white" /></div>
-              <h3>Suivi du handicap à domicile</h3>
-              <p>Prise en charge adaptée à domicile pour enfants et adultes en situation de handicap. Accompagnement personnalisé et bienveillant chez vous.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT SECTION */}
-      <section id="about" className={styles.about} data-animate>
-        <div className="container">
-          <h2>Qui je suis</h2>
-
-          <div className={styles.aboutContent}>
-            <div className={styles.story}>
-              <p>
-                Je suis Philémon Eydoux, kinésithérapeute à domicile spécialisé dans l'accompagnement des personnes âgées.
-                Je me déplace à votre domicile pour vous proposer des séances de rééducation flexibles et adaptées.
-                Mon objectif est d'accompagner mes patients vers le bien-être et le maintien de leur autonomie à domicile.
-              </p>
-              <p>
-                Diplômé en kinésithérapie, je suis spécialisé dans la rééducation fonctionnelle à domicile et l'accompagnement
-                à la remise en mobilité. J'ai également de l'expérience solide dans l'accompagnement à domicile des enfants
-                atteints de handicap moteur. Mon approche combine rigueur scientifique et bienveillance, directement chez vous.
-              </p>
-            </div>
-
-            <div className={styles.highlights}>
-              <div className={styles.highlightCard}>
-                <Award size={32} color="#7CB9D4" />
-                <h3>Formation complète</h3>
-                <p>Diplômé en kinésithérapie avec expérience dans la rééducation neurologique</p>
-              </div>
-              <div className={styles.highlightCard}>
-                <Heart size={32} color="#7CB9D4" />
-                <h3>Spécialisation handicap</h3>
-                <p>Accompagnement adapté pour les enfants et adultes en situation de handicap</p>
-              </div>
-              <div className={styles.highlightCard}>
-                <HomeIcon size={32} color="#7CB9D4" />
-                <h3>Suivi à domicile</h3>
-                <p>Séances flexibles chez vous pour plus de confort et d'accessibilité</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* CONTACT SECTION */}
-      <section id="contact" className={styles.contactSection} data-animate>
-        <div className="container">
-          <h2>Prendre contact</h2>
-
-          <div className={styles.contactGrid}>
-            {/* WhatsApp CTA */}
-            <div className={styles.whatsappCta}>
-              <div className={styles.whatsappCard}>
-                <div className={styles.whatsappIcon}>
-                  <MessageCircle size={48} color="white" />
-                </div>
-                <h3>Me contacter via WhatsApp</h3>
-                <p>Le moyen le plus rapide de prendre rendez-vous</p>
-                <p className={styles.phone}>06&nbsp;35&nbsp;55&nbsp;00&nbsp;50</p>
-                <a href={whatsappUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                  Envoyer un message WhatsApp
-                </a>
-                <p className={styles.response}>
-                  Habituellement, je réponds dans les 2-4 heures
-                </p>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className={styles.infoSection}>
-              <div className={styles.infoCard}>
-                <Phone size={32} color="#7CB9D4" />
-                <h3>Appel direct</h3>
-                <p className={styles.phoneNumber}>06&nbsp;35&nbsp;55&nbsp;00&nbsp;50</p>
-                <small>Disponible du lundi au vendredi de 9h à 18h</small>
-              </div>
-
-              <div className={styles.infoCard}>
-                <MapPin size={32} color="#7CB9D4" />
-                <div style={{ flex: 1 }}>
-                  <h3>Mes lieux d'intervention</h3>
-                  <p style={{ marginBottom: '8px', margin: 0, color: '#555' }}>📍 Levallois-Perret</p>
-                  <p style={{ margin: 0, color: '#555' }}>📍 Neuilly-sur-Seine</p>
-                </div>
-              </div>
-
-              <div className={styles.infoCard}>
-                <Clock size={32} color="#7CB9D4" />
-                <h3>Horaires</h3>
-                <p>Lundi, mercredi au vendredi</p>
-                <p>9h00 - 18h00</p>
-                <small>(Fermé le mardi)</small>
-              </div>
-            </div>
-          </div>
-
-          {/* Process */}
-          <div className={styles.process}>
-            <h3>Comment ça fonctionne ?</h3>
-            <div className={styles.steps}>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>1</div>
-                <div className={styles.stepIcon}><MessageCircle size={40} color="white" /></div>
-                <h4>Contactez-moi</h4>
-                <p>Via WhatsApp, appel ou SMS</p>
-              </div>
-              <div className={styles.arrow}>→</div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>2</div>
-                <div className={styles.stepIcon}><Clock size={40} color="white" /></div>
-                <h4>Confirmez votre RDV</h4>
-                <p>Choix de la date et heure</p>
-              </div>
-              <div className={styles.arrow}>→</div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>3</div>
-                <div className={styles.stepIcon}><Heart size={40} color="white" /></div>
-                <h4>Première séance</h4>
-                <p>Bilan et plan de traitement</p>
-              </div>
-              <div className={styles.arrow}>→</div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>4</div>
-                <div className={styles.stepIcon}><Footprints size={40} color="white" /></div>
-                <h4>Suivi régulier</h4>
-                <p>Progression adaptée</p>
-              </div>
-            </div>
-          </div>
-
-          {/* FAQ */}
-          <div id="faq" className={styles.faq} data-animate>
-            <h3>Questions fréquentes</h3>
-            <div className={styles.faqGrid}>
-              {[
-                { q: 'Dois-je une ordonnance médicale ?', a: 'Pour être remboursé par la Sécurité Sociale, oui. Cependant, une séance sans ordonnance est possible.' },
-                { q: 'Quel est le délai pour le premier RDV ?', a: 'Généralement sous 2-3 jours. Pour les urgences, je fais de mon mieux pour trouver une place rapidement.' },
-                { q: 'Acceptez-vous les enfants ?', a: 'Absolument ! J\'ai de l\'expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.' },
-                { q: 'Êtes-vous conventionné Sécu ?', a: 'Oui, je suis conventionné. Les tarifs respectent le barème de la Sécurité Sociale.' },
-                { q: 'Proposez-vous des séances à domicile ?', a: 'Oui, absolument ! Je suis kinésithérapeute à domicile. Toutes mes séances se déroulent directement chez vous pour plus de confort et d\'accessibilité.' },
-                { q: 'Que faire en cas d\'annulation ?', a: 'Veuillez m\'avertir au minimum 24 heures à l\'avance pour éviter des frais d\'annulation.' },
-                { q: 'Comment suis-je remboursé ?', a: 'Les séances sont remboursées par la Sécurité Sociale sur prescription médicale. Vérifiez votre couverture mutuelle pour les dépassements éventuels.' },
-                { q: 'Y a-t-il une réduction possible ?', a: 'Les bénéficiaires de l\'AME ont accès à des tarifs réduits. N\'hésitez pas à m\'en parler lors de votre première visite.' },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`${styles.faqItem} ${expandedFaq === idx ? styles.expanded : ''}`}
-                  onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
-                >
-                  <div className={styles.faqHeader}>
-                    <h4>{item.q}</h4>
-                    <ChevronDown size={20} className={styles.faqChevron} />
-                  </div>
-                  {expandedFaq === idx && <p>{item.a}</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className={styles.finalCta} data-animate>
-        <div className="container">
-          <h2>Prêt à commencer votre suivi à domicile ?</h2>
-          <p>Contactez-moi dès maintenant via WhatsApp pour planifier vos séances à domicile</p>
-          <a href={whatsappUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            Ouvrir WhatsApp
+      <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}>
+        <div className={`container ${styles.headerInner}`}>
+          <a href="#top" className={styles.brand} onClick={() => setMenuOpen(false)}>
+            <span className={styles.brandName}>Philémon Eydoux</span>
+            <span className={styles.brandRole}>Kinésithérapeute</span>
           </a>
+
+          <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`} aria-label="Navigation principale">
+            {NAV_LINKS.map((link) => (
+              <a key={link.id} href={`#${link.id}`} onClick={() => setMenuOpen(false)}>
+                {link.label}
+              </a>
+            ))}
+            <a href="#contact" className={`btn btn-primary ${styles.navCta}`} onClick={() => setMenuOpen(false)}>
+              Prendre rendez-vous
+            </a>
+          </nav>
+
+          <button
+            className={styles.menuToggle}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-      </section>
+      </header>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className="container">
-          <div className={styles.footerContent}>
-            <div className={styles.brand}>
-              <h3>Philémon Eydoux</h3>
-              <p>Kinésithérapeute à domicile</p>
-              <p className={styles.tagline}>
-                Votre partenaire pour le bien-être et la mobilité à domicile
+      <main id="top">
+        {/* HERO */}
+        <section className={styles.hero}>
+          <div className={`container ${styles.heroGrid}`}>
+            <div className={styles.heroText}>
+              <p className={styles.eyebrow}>
+                <MapPin size={16} aria-hidden="true" />
+                Levallois-Perret &amp; Neuilly-sur-Seine
               </p>
-            </div>
-
-            <div className={styles.section}>
-              <h4>Navigation</h4>
-              <ul>
-                <li>
-                  <button onClick={() => scrollToSection('home')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>
-                    Accueil
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection('about')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>
-                    Qui je suis
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection('contact')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'inherit' }}>
-                    Contact
-                  </button>
-                </li>
+              <h1>
+                La kinésithérapie, <em>chez&nbsp;vous.</em>
+              </h1>
+              <p className={styles.lead}>
+                Je me déplace à votre domicile pour la rééducation, l&apos;accompagnement des personnes âgées
+                et le suivi du handicap. Des soins attentifs, sans trajet ni salle d&apos;attente.
+              </p>
+              <div className={styles.heroActions}>
+                <a href={whatsappUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle size={20} aria-hidden="true" />
+                  Écrire sur WhatsApp
+                </a>
+                <a href={PHONE_HREF} className="btn btn-ghost">
+                  <Phone size={18} aria-hidden="true" />
+                  {PHONE_DISPLAY}
+                </a>
+              </div>
+              <ul className={styles.trust}>
+                <li><ShieldCheck size={18} aria-hidden="true" /> Conventionné Sécurité sociale</li>
+                <li><HomeIcon size={18} aria-hidden="true" /> 100&nbsp;% à domicile</li>
+                <li><Clock size={18} aria-hidden="true" /> Réponse sous 2 à 4&nbsp;h</li>
               </ul>
             </div>
 
-            <div className={styles.section}>
-              <h4>Contact</h4>
-              <div className={styles.contactItem}>
-                <Phone size={18} />
-                <span>06 35 55 00 50</span>
+            <div className={styles.heroMedia}>
+              <div className={styles.portrait}>
+                <Image
+                  src="/philemon-eydoux.jpg"
+                  alt="Portrait de Philémon Eydoux, kinésithérapeute"
+                  fill
+                  priority
+                  sizes="(max-width: 900px) 80vw, 440px"
+                />
               </div>
-              <div className={styles.contactItem}>
-                <MapPin size={18} />
-                <span>Levallois-Perret (92)</span>
+              <div className={styles.portraitBadge}>
+                <span className={styles.badgeDot} aria-hidden="true" />
+                <div>
+                  <strong>Philémon Eydoux</strong>
+                  <span>Kinésithérapeute à domicile</span>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div className={styles.divider}></div>
+        {/* SERVICES */}
+        <section id="services" className={styles.section}>
+          <div className="container">
+            <div className={styles.sectionHead}>
+              <p className={styles.kicker}>Mes services</p>
+              <h2>Un accompagnement adapté à chaque situation</h2>
+            </div>
+            <div className={styles.servicesGrid}>
+              {SERVICES.map(({ icon: Icon, title, text }) => (
+                <article key={title} className={styles.serviceCard}>
+                  <div className={styles.serviceIcon}>
+                    <Icon size={26} aria-hidden="true" />
+                  </div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <div className={styles.bottom}>
-            <p>
-              © {new Date().getFullYear()} Philémon Eydoux. Tous droits réservés.
-            </p>
-            <p className={styles.disclaimer}>
-              Site professionnel de kinésithérapie. Respectez les délais de 24h pour les annulations.
-            </p>
+        {/* ABOUT */}
+        <section id="about" className={`${styles.section} ${styles.aboutSection}`}>
+          <div className={`container ${styles.aboutGrid}`}>
+            <div>
+              <p className={styles.kicker}>Qui je suis</p>
+              <h2>Rigueur du soin, chaleur de la relation</h2>
+            </div>
+            <div className={styles.aboutBody}>
+              <p>
+                Je suis Philémon Eydoux, kinésithérapeute à domicile. J&apos;accompagne en particulier les personnes
+                âgées, avec des séances souples et adaptées, pour préserver leur bien-être et leur autonomie chez elles.
+              </p>
+              <p>
+                Spécialisé en rééducation fonctionnelle et en remise en mobilité, j&apos;ai aussi une solide expérience
+                auprès des enfants en situation de handicap moteur. Mon approche allie rigueur scientifique et
+                bienveillance.
+              </p>
+              <ul className={styles.highlights}>
+                <li>
+                  <Award size={22} aria-hidden="true" />
+                  <div>
+                    <strong>Formation complète</strong>
+                    <span>Diplômé en kinésithérapie, expérience en rééducation neurologique</span>
+                  </div>
+                </li>
+                <li>
+                  <Heart size={22} aria-hidden="true" />
+                  <div>
+                    <strong>Handicap moteur</strong>
+                    <span>Suivi adapté des enfants et des adultes</span>
+                  </div>
+                </li>
+                <li>
+                  <HomeIcon size={22} aria-hidden="true" />
+                  <div>
+                    <strong>Au plus près de vous</strong>
+                    <span>Séances à domicile, horaires flexibles</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* PROCESS */}
+        <section id="process" className={styles.section}>
+          <div className="container">
+            <div className={styles.sectionHead}>
+              <p className={styles.kicker}>Comment ça se passe</p>
+              <h2>Quatre étapes, simplement</h2>
+            </div>
+            <ol className={styles.steps}>
+              {STEPS.map((step, i) => (
+                <li key={step.title} className={styles.step}>
+                  <span className={styles.stepNumber}>{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section id="contact" className={styles.section}>
+          <div className="container">
+            <div className={styles.contactCard}>
+              <div className={styles.contactMain}>
+                <p className={`${styles.kicker} ${styles.kickerLight}`}>Prendre rendez-vous</p>
+                <h2>Parlons de votre suivi</h2>
+                <p>
+                  Le plus rapide : un message WhatsApp. Je réponds habituellement dans les 2 à 4&nbsp;heures.
+                </p>
+                <div className={styles.heroActions}>
+                  <a href={whatsappUrl} className={`btn ${styles.btnLight}`} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle size={20} aria-hidden="true" />
+                    Écrire sur WhatsApp
+                  </a>
+                  <a href={PHONE_HREF} className={`btn ${styles.btnOutlineLight}`}>
+                    <Phone size={18} aria-hidden="true" />
+                    {PHONE_DISPLAY}
+                  </a>
+                </div>
+              </div>
+
+              <dl className={styles.contactInfo}>
+                <div>
+                  <dt><MapPin size={18} aria-hidden="true" /> Secteurs</dt>
+                  <dd>Levallois-Perret (92)<br />Neuilly-sur-Seine (92)</dd>
+                </div>
+                <div>
+                  <dt><Clock size={18} aria-hidden="true" /> Horaires</dt>
+                  <dd>Lundi, mercredi → vendredi<br />9h00 – 18h00 · fermé le mardi</dd>
+                </div>
+                <div>
+                  <dt><Phone size={18} aria-hidden="true" /> Téléphone</dt>
+                  <dd><a href={PHONE_HREF}>{PHONE_DISPLAY}</a></dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className={styles.section}>
+          <div className={`container ${styles.faqGrid}`}>
+            <div>
+              <p className={styles.kicker}>FAQ</p>
+              <h2>Questions fréquentes</h2>
+              <p className={styles.faqAside}>
+                Une autre question ? <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Écrivez-moi</a>.
+              </p>
+            </div>
+            <div className={styles.faqList}>
+              {FAQ.map((item) => (
+                <details key={item.q} className={styles.faqItem}>
+                  <summary>
+                    {item.q}
+                    <Plus size={20} className={styles.faqIcon} aria-hidden="true" />
+                  </summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className={styles.footer}>
+        <div className={`container ${styles.footerInner}`}>
+          <div>
+            <p className={styles.footerName}>Philémon Eydoux</p>
+            <p>Kinésithérapeute à domicile · Levallois-Perret &amp; Neuilly-sur-Seine</p>
+          </div>
+          <div className={styles.footerLinks}>
+            <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>
           </div>
         </div>
+        <div className={`container ${styles.footerBottom}`}>
+          <p>© {new Date().getFullYear()} Philémon Eydoux. Annulation : merci de prévenir 24&nbsp;h à l&apos;avance.</p>
+        </div>
       </footer>
+
+      {/* Mobile quick actions */}
+      <div className={styles.mobileBar}>
+        <a href={PHONE_HREF} className={styles.mobileBarCall}>
+          <Phone size={18} aria-hidden="true" /> Appeler
+        </a>
+        <a href={whatsappUrl} className={styles.mobileBarWa} target="_blank" rel="noopener noreferrer">
+          <MessageCircle size={18} aria-hidden="true" /> WhatsApp
+        </a>
+      </div>
     </>
   )
 }

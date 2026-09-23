@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Fraunces, Inter } from 'next/font/google'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  variable: '--font-playfair',
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-fraunces',
 })
 
 const inter = Inter({
@@ -15,10 +16,16 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#F7F4EF',
+}
+
 export const metadata: Metadata = {
   title: 'Philémon Eydoux - Kinésithérapeute à domicile à Levallois-Perret',
   description: 'Kinésithérapeute à domicile spécialisé en rééducation à domicile, accompagnement personnes âgées et suivi du handicap à Levallois-Perret (92). Je me déplace chez vous. Prendre rendez-vous en ligne.',
-  viewport: 'width=device-width, initial-scale=1',
+  metadataBase: new URL('https://phil-kine.vercel.app'),
   keywords: 'kinésithérapeute à domicile, Levallois-Perret, rééducation à domicile, personnes âgées, suivi handicap, séance de kiné',
   authors: [{ name: 'Philémon Eydoux' }],
   creator: 'Philémon Eydoux',
@@ -37,6 +44,7 @@ export const metadata: Metadata = {
     title: 'Philémon Eydoux - Kinésithérapeute à domicile',
     description: 'Kinésithérapeute à domicile - rééducation, personnes âgées et suivi du handicap à domicile',
     siteName: 'Philémon Eydoux - Kinésithérapeute à domicile',
+    images: [{ url: '/philemon-eydoux.jpg', width: 1086, height: 1448, alt: 'Philémon Eydoux' }],
   },
   twitter: {
     card: 'summary',
@@ -53,7 +61,7 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID
 
   return (
-    <html lang="fr" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="fr" className={`${fraunces.variable} ${inter.variable}`}>
       <head>
         {/* Structured Data - LocalBusiness Schema */}
         <script
@@ -64,7 +72,7 @@ export default function RootLayout({
               '@type': 'LocalBusiness',
               name: 'Philémon Eydoux - Kinésithérapeute à domicile',
               description: 'Kinésithérapeute à domicile spécialisé en rééducation, accompagnement des personnes âgées et suivi du handicap',
-              image: 'https://philemon-kine-site.vercel.app/og-image.jpg',
+              image: 'https://phil-kine.vercel.app/philemon-eydoux.jpg',
               url: 'https://philemon-kine-site.vercel.app',
               telephone: '+33635550050',
               address: {
@@ -80,7 +88,7 @@ export default function RootLayout({
               openingHoursSpecification: [
                 {
                   '@type': 'OpeningHoursSpecification',
-                  dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                  dayOfWeek: ['Monday', 'Wednesday', 'Thursday', 'Friday'],
                   opens: '09:00',
                   closes: '18:00',
                 },
@@ -98,7 +106,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main>{children}</main>
+        {children}
 
         {/* Google Analytics */}
         {gaId && (
