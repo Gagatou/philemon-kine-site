@@ -157,6 +157,22 @@
   height: 100%;
 }
 
+.heroPhoto {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid white;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.2);
+}
+
+.heroPhoto img {
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+
 .heroLogo h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -897,6 +913,11 @@
   .heroLogo .logo {
     width: 100px;
     height: 100px;
+  }
+
+  .heroPhoto {
+    width: 140px;
+    height: 140px;
   }
 
   .heroLogo h1 {

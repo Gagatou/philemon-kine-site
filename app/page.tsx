@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { MapPin, Phone, ArrowRight, Award, Heart, Footprints, MessageCircle, Clock, Moon, Sun, ChevronDown, Home as HomeIcon, Users, Activity, Accessibility, Stethoscope } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import styles from './page.module.css'
@@ -126,13 +127,14 @@ export default function Home() {
         <div className="container">
           <div className={styles.heroContent}>
             <div className={styles.heroLogo}>
-              <div className={styles.logo}>
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="30" r="15" fill="#7CB9D4"/>
-                  <ellipse cx="50" cy="60" rx="20" ry="25" fill="#7CB9D4"/>
-                  <circle cx="35" cy="55" r="8" fill="#A8D8EA"/>
-                  <circle cx="65" cy="55" r="8" fill="#A8D8EA"/>
-                </svg>
+              <div className={styles.heroPhoto}>
+                <Image
+                  src="/philemon-eydoux.jpg"
+                  alt="Philémon Eydoux, kinésithérapeute à domicile"
+                  fill
+                  sizes="(max-width: 768px) 140px, 200px"
+                  priority
+                />
               </div>
               <h1>Philémon Eydoux</h1>
               <p className={styles.subtitle}>Kinésithérapeute à domicile</p>
