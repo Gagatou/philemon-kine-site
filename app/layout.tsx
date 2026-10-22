@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 const SITE_URL = 'https://kineydoux.fr'
 
 export const metadata: Metadata = {
-  title: 'Philémon Eydoux - Kinésithérapeute à domicile à Levallois-Perret et Neuilly-sur-Seine',
-  description: 'Kinésithérapeute à domicile à Levallois-Perret et Neuilly-sur-Seine (92) : rééducation, personnes âgées, pédiatrie et suivi du handicap. Conventionné. Rendez-vous par WhatsApp ou téléphone.',
+  title: 'Kinésithérapeute à domicile à Levallois-Perret, Neuilly et Clichy - Philémon Eydoux',
+  description: 'Kinésithérapeute à domicile à Levallois-Perret, Neuilly-sur-Seine et Clichy (92) : rééducation, personnes âgées, pédiatrie et suivi du handicap. Conventionné. Rendez-vous par WhatsApp ou téléphone.',
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: '/' },
   authors: [{ name: 'Philémon Eydoux' }],
@@ -47,12 +47,12 @@ export const metadata: Metadata = {
     title: 'Philémon Eydoux - Kinésithérapeute à domicile',
     description: 'Kinésithérapeute à domicile - rééducation, personnes âgées et suivi du handicap à domicile',
     siteName: 'Philémon Eydoux - Kinésithérapeute à domicile',
-    images: [{ url: '/philemon-eydoux.jpg', width: 1086, height: 1448, alt: 'Philémon Eydoux' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Philémon Eydoux, kinésithérapeute à domicile' }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Philémon Eydoux - Kinésithérapeute à domicile',
-    description: 'Rééducation et accompagnement à domicile - Levallois-Perret',
+    description: 'Rééducation et accompagnement à domicile - Levallois-Perret, Neuilly-sur-Seine et Clichy',
   },
 }
 
@@ -88,12 +88,13 @@ export default function RootLayout({
               areaServed: [
                 { '@type': 'City', name: 'Levallois-Perret' },
                 { '@type': 'City', name: 'Neuilly-sur-Seine' },
+                { '@type': 'City', name: 'Clichy' },
               ],
               priceRange: '€',
               openingHoursSpecification: [
                 {
                   '@type': 'OpeningHoursSpecification',
-                  dayOfWeek: ['Monday', 'Wednesday', 'Thursday', 'Friday'],
+                  dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                   opens: '09:00',
                   closes: '18:00',
                 },

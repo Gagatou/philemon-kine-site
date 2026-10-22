@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 import {
   MapPin,
   Phone,
-  ArrowRight,
   MessageCircle,
   Clock,
   Home as HomeIcon,
@@ -14,13 +13,14 @@ import {
   Stethoscope,
   Baby,
   Award,
-  Heart,
   ShieldCheck,
   Menu,
   X,
   Plus,
+  Check,
 } from 'lucide-react'
 import styles from './page.module.css'
+import ZonesMap from '@/components/ZonesMap'
 
 const PHONE_NUMBER = '33635550050'
 const PHONE_DISPLAY = '06 35 55 00 50'
@@ -30,9 +30,24 @@ const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(WHA
 
 const NAV_LINKS = [
   { id: 'services', label: 'Services' },
-  { id: 'about', label: 'Qui je suis' },
-  { id: 'process', label: 'Déroulé' },
+  { id: 'soins', label: 'Soins' },
+  { id: 'zones', label: 'Zones' },
   { id: 'faq', label: 'FAQ' },
+]
+
+const SOINS = [
+  'Prothèse de hanche ou de genou',
+  'Après une fracture ou une chute',
+  'Équilibre et prévention des chutes',
+  'Perte d’autonomie, maintien à domicile',
+  'Handicap moteur, enfant et adulte',
+  'Développement moteur du bébé et de l’enfant',
+]
+
+const ZONES = [
+  { city: 'Levallois-Perret', zip: '92300' },
+  { city: 'Neuilly-sur-Seine', zip: '92200' },
+  { city: 'Clichy', zip: '92110' },
 ]
 
 const SERVICES = [
@@ -71,6 +86,8 @@ const STEPS = [
 ]
 
 const FAQ = [
+  { q: 'Combien coûte une séance à domicile ?', a: 'Je suis conventionné : les séances suivent le barème de la Sécurité sociale, avec une indemnité de déplacement pour les soins à domicile. Les deux sont remboursées sur prescription médicale, et votre mutuelle peut compléter.' },
+  { q: 'Dans quelles villes vous déplacez-vous ?', a: 'Levallois-Perret, Neuilly-sur-Seine et Clichy. Pour une adresse proche, écrivez-moi.' },
   { q: 'Ai-je besoin d’une ordonnance ?', a: 'Pour être remboursé par la Sécurité sociale, oui. Une séance sans ordonnance reste possible.' },
   { q: 'Quel est le délai pour un premier rendez-vous ?', a: 'Généralement sous 2 à 3 jours. Pour les situations urgentes, je fais au mieux pour trouver une place rapidement.' },
   { q: 'Prenez-vous en charge les enfants ?', a: 'Oui. J’ai de l’expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.' },
@@ -131,16 +148,14 @@ export default function Home() {
         <section className={styles.hero}>
           <div className={`container ${styles.heroGrid}`}>
             <div className={styles.heroText}>
-              <p className={styles.eyebrow}>
-                <MapPin size={16} aria-hidden="true" />
-                Levallois-Perret &amp; Neuilly-sur-Seine
-              </p>
               <h1>
-                La kinésithérapie, <em>chez&nbsp;vous.</em>
+                Kinésithérapeute <em>à&nbsp;domicile</em>
               </h1>
+              <p className={styles.heroSubtitle}>Levallois-Perret, Neuilly-sur-Seine et Clichy</p>
               <p className={styles.lead}>
-                Je me déplace à votre domicile pour la rééducation, l&apos;accompagnement des personnes âgées
-                et le suivi du handicap. Des soins attentifs, sans trajet ni salle d&apos;attente.
+                La kinésithérapie, chez vous. Je me déplace à votre domicile pour la rééducation,
+                l&apos;accompagnement des personnes âgées et le suivi du handicap. Des soins attentifs, sans trajet
+                ni salle d&apos;attente.
               </p>
               <div className={styles.heroActions}>
                 <a href={whatsappUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
@@ -173,7 +188,7 @@ export default function Home() {
                 <span className={styles.badgeDot} aria-hidden="true" />
                 <div>
                   <strong>Philémon Eydoux</strong>
-                  <span>Kinésithérapeute à domicile</span>
+                  <span>Masseur-kinésithérapeute · RPPS 10102028452</span>
                 </div>
               </div>
             </div>
@@ -201,11 +216,34 @@ export default function Home() {
           </div>
         </section>
 
+        {/* SOINS */}
+        <section id="soins" className={`${styles.section} ${styles.soinsSection}`}>
+          <div className={`container ${styles.soinsGrid}`}>
+            <div>
+              <p className={styles.kicker}>Soins</p>
+              <h2>Ce que je prends en charge à domicile</h2>
+              <p className={styles.sectionIntro}>
+                Quelques situations fréquentes. Votre situation n&apos;est pas dans la liste&nbsp;? Écrivez-moi, je vous
+                dis si je peux vous aider.
+              </p>
+            </div>
+            <ul className={styles.soinsList}>
+              {SOINS.map((soin) => (
+                <li key={soin}>
+                  <Check size={20} aria-hidden="true" />
+                  {soin}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* ABOUT */}
         <section id="about" className={`${styles.section} ${styles.aboutSection}`}>
           <div className={`container ${styles.aboutGrid}`}>
             <div>
-              <h2>Qui suis-je&nbsp;?</h2>
+              <p className={styles.kicker}>Qui suis-je&nbsp;?</p>
+              <h2>Rigueur scientifique et bienveillance</h2>
             </div>
             <div className={styles.aboutBody}>
               <p>
@@ -214,22 +252,21 @@ export default function Home() {
               </p>
               <p>
                 Spécialisé en rééducation fonctionnelle et en remise en mobilité, j&apos;ai aussi une solide expérience
-                auprès des enfants en situation de handicap moteur. Mon approche allie rigueur scientifique et
-                bienveillance.
+                auprès des enfants en situation de handicap moteur.
               </p>
               <ul className={styles.highlights}>
                 <li>
                   <Award size={22} aria-hidden="true" />
                   <div>
-                    <strong>Formation complète</strong>
-                    <span>Diplômé en kinésithérapie, expérience en rééducation neurologique</span>
+                    <strong>Diplômé en kinésithérapie</strong>
+                    <span>Universidad San Jorge (Saragosse, Espagne) · expérience en rééducation neurologique</span>
                   </div>
                 </li>
                 <li>
-                  <Heart size={22} aria-hidden="true" />
+                  <ShieldCheck size={22} aria-hidden="true" />
                   <div>
-                    <strong>Handicap moteur</strong>
-                    <span>Suivi adapté des enfants et des adultes</span>
+                    <strong>Inscrit à l&apos;Ordre des masseurs-kinésithérapeutes</strong>
+                    <span>N° RPPS 10102028452</span>
                   </div>
                 </li>
                 <li>
@@ -263,6 +300,32 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ZONES */}
+        <section id="zones" className={styles.section}>
+          <div className={`container ${styles.zonesGrid}`}>
+            <div>
+              <p className={styles.kicker}>Zones d&apos;intervention</p>
+              <h2>Je me déplace dans ces villes</h2>
+              <ul className={styles.zonesList}>
+                {ZONES.map(({ city, zip }) => (
+                  <li key={city}>
+                    <strong>{city}</strong>
+                    <span>{zip}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className={styles.zonesNote}>Vous habitez juste à côté&nbsp;? Écrivez-moi, je vous dis si je peux venir.</p>
+            </div>
+            <div
+              className={styles.mapBox}
+              role="img"
+              aria-label="Carte des zones d'intervention : Levallois-Perret, Neuilly-sur-Seine et Clichy"
+            >
+              <ZonesMap />
+            </div>
+          </div>
+        </section>
+
         {/* CONTACT */}
         <section id="contact" className={styles.section}>
           <div className="container">
@@ -288,11 +351,11 @@ export default function Home() {
               <dl className={styles.contactInfo}>
                 <div>
                   <dt><MapPin size={18} aria-hidden="true" /> Secteurs</dt>
-                  <dd>Levallois-Perret (92)<br />Neuilly-sur-Seine (92)</dd>
+                  <dd>Levallois-Perret (92)<br />Neuilly-sur-Seine (92)<br />Clichy (92)</dd>
                 </div>
                 <div>
                   <dt><Clock size={18} aria-hidden="true" /> Horaires</dt>
-                  <dd>Lundi, mercredi → vendredi<br />9h00 – 18h00 · fermé le mardi</dd>
+                  <dd>Lundi → vendredi<br />9h00 – 18h00</dd>
                 </div>
                 <div>
                   <dt><Phone size={18} aria-hidden="true" /> Téléphone</dt>
@@ -346,7 +409,7 @@ export default function Home() {
         <div className={`container ${styles.footerInner}`}>
           <div>
             <p className={styles.footerName}>Philémon Eydoux</p>
-            <p>Kinésithérapeute à domicile · Levallois-Perret &amp; Neuilly-sur-Seine</p>
+            <p>Kinésithérapeute à domicile · Levallois-Perret, Neuilly-sur-Seine et Clichy</p>
           </div>
           <div className={styles.footerLinks}>
             <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
