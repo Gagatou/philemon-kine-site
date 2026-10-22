@@ -21,6 +21,7 @@ import {
   Plus,
 } from 'lucide-react'
 import styles from './page.module.css'
+import HeroShader from '@/components/HeroShader'
 
 const PHONE_NUMBER = '33635550050'
 const PHONE_DISPLAY = '06 35 55 00 50'
@@ -160,6 +161,9 @@ export default function Home() {
             </div>
 
             <div className={styles.heroMedia}>
+              <div className={styles.heroBlob}>
+                <HeroShader />
+              </div>
               <div className={styles.portrait}>
                 <Image
                   src="/philemon-eydoux.jpg"
