@@ -22,11 +22,14 @@ export const viewport: Viewport = {
   themeColor: '#F7F4EF',
 }
 
+// Domaine principal : à changer ici, dans public/robots.txt et public/sitemap.xml
+const SITE_URL = 'https://kineydoux.fr'
+
 export const metadata: Metadata = {
-  title: 'Philémon Eydoux - Kinésithérapeute à domicile à Levallois-Perret',
-  description: 'Kinésithérapeute à domicile spécialisé en rééducation à domicile, accompagnement personnes âgées et suivi du handicap à Levallois-Perret (92). Je me déplace chez vous. Prendre rendez-vous en ligne.',
-  metadataBase: new URL('https://phil-kine.vercel.app'),
-  keywords: 'kinésithérapeute à domicile, Levallois-Perret, rééducation à domicile, personnes âgées, suivi handicap, séance de kiné',
+  title: 'Philémon Eydoux - Kinésithérapeute à domicile à Levallois-Perret et Neuilly-sur-Seine',
+  description: 'Kinésithérapeute à domicile à Levallois-Perret et Neuilly-sur-Seine (92) : rééducation, personnes âgées, pédiatrie et suivi du handicap. Conventionné. Rendez-vous par WhatsApp ou téléphone.',
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: '/' },
   authors: [{ name: 'Philémon Eydoux' }],
   creator: 'Philémon Eydoux',
   robots: {
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://philemon-kine-site.vercel.app',
+    url: SITE_URL,
     title: 'Philémon Eydoux - Kinésithérapeute à domicile',
     description: 'Kinésithérapeute à domicile - rééducation, personnes âgées et suivi du handicap à domicile',
     siteName: 'Philémon Eydoux - Kinésithérapeute à domicile',
@@ -69,21 +72,23 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
+              '@type': 'Physiotherapy',
               name: 'Philémon Eydoux - Kinésithérapeute à domicile',
               description: 'Kinésithérapeute à domicile spécialisé en rééducation, accompagnement des personnes âgées et suivi du handicap',
-              image: 'https://phil-kine.vercel.app/philemon-eydoux.jpg',
-              url: 'https://philemon-kine-site.vercel.app',
+              image: `${SITE_URL}/philemon-eydoux.jpg`,
+              url: SITE_URL,
               telephone: '+33635550050',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: 'Levallois-Perret',
                 addressLocality: 'Levallois-Perret',
                 postalCode: '92300',
                 addressRegion: 'Île-de-France',
                 addressCountry: 'FR',
               },
-              areaServed: 'FR',
+              areaServed: [
+                { '@type': 'City', name: 'Levallois-Perret' },
+                { '@type': 'City', name: 'Neuilly-sur-Seine' },
+              ],
               priceRange: '€',
               openingHoursSpecification: [
                 {

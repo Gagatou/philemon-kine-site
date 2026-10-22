@@ -22,6 +22,13 @@ const nextConfig = {
       ],
     },
   ],
+  redirects: async () =>
+    ['philemon-kine-site.vercel.app', 'phil-kine.vercel.app'].map((host) => ({
+      source: '/:path*',
+      has: [{ type: 'host', value: host }],
+      destination: 'https://kineydoux.fr/:path*',
+      permanent: true,
+    })),
   rewrites: async () => ({
     beforeFiles: [
       {

@@ -3,4 +3,4 @@ Allow: /
 Disallow: /.next/
 Disallow: /api/
 
-Sitemap: https://philemon-kine-site.vercel.app/sitemap.xml
+Sitemap: https://kineydoux.fr/sitemap.xml
