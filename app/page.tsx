@@ -47,7 +47,6 @@ const SOINS = [
 const ZONES = [
   { city: 'Levallois-Perret', zip: '92300' },
   { city: 'Neuilly-sur-Seine', zip: '92200' },
-  { city: 'Clichy', zip: '92110' },
 ]
 
 const SERVICES = [
@@ -87,7 +86,7 @@ const STEPS = [
 
 const FAQ = [
   { q: 'Combien coûte une séance à domicile ?', a: 'Je suis conventionné : les séances suivent le barème de la Sécurité sociale, avec une indemnité de déplacement pour les soins à domicile. Les deux sont remboursées sur prescription médicale, et votre mutuelle peut compléter.' },
-  { q: 'Dans quelles villes vous déplacez-vous ?', a: 'Levallois-Perret, Neuilly-sur-Seine et Clichy. Pour une adresse proche, écrivez-moi.' },
+  { q: 'Dans quelles villes vous déplacez-vous ?', a: 'Levallois-Perret et Neuilly-sur-Seine. Pour une adresse proche, écrivez-moi.' },
   { q: 'Ai-je besoin d’une ordonnance ?', a: 'Pour être remboursé par la Sécurité sociale, oui. Une séance sans ordonnance reste possible.' },
   { q: 'Quel est le délai pour un premier rendez-vous ?', a: 'Généralement sous 2 à 3 jours. Pour les situations urgentes, je fais au mieux pour trouver une place rapidement.' },
   { q: 'Prenez-vous en charge les enfants ?', a: 'Oui. J’ai de l’expérience avec les enfants et les jeunes, notamment dans le suivi du handicap moteur.' },
@@ -151,7 +150,7 @@ export default function Home() {
               <h1>
                 Kinésithérapeute <em>à&nbsp;domicile</em>
               </h1>
-              <p className={styles.heroSubtitle}>Levallois-Perret, Neuilly-sur-Seine et Clichy</p>
+              <p className={styles.heroSubtitle}>Levallois-Perret et Neuilly-sur-Seine</p>
               <p className={styles.lead}>
                 La kinésithérapie, chez vous. Je me déplace à votre domicile pour la rééducation,
                 l&apos;accompagnement des personnes âgées et le suivi du handicap. Des soins attentifs, sans trajet
@@ -319,7 +318,7 @@ export default function Home() {
             <div
               className={styles.mapBox}
               role="img"
-              aria-label="Carte des zones d'intervention : Levallois-Perret, Neuilly-sur-Seine et Clichy"
+              aria-label="Carte des zones d'intervention : Levallois-Perret et Neuilly-sur-Seine"
             >
               <ZonesMap />
             </div>
@@ -351,7 +350,7 @@ export default function Home() {
               <dl className={styles.contactInfo}>
                 <div>
                   <dt><MapPin size={18} aria-hidden="true" /> Secteurs</dt>
-                  <dd>Levallois-Perret (92)<br />Neuilly-sur-Seine (92)<br />Clichy (92)</dd>
+                  <dd>Levallois-Perret (92)<br />Neuilly-sur-Seine (92)</dd>
                 </div>
                 <div>
                   <dt><Clock size={18} aria-hidden="true" /> Horaires</dt>
@@ -409,7 +408,7 @@ export default function Home() {
         <div className={`container ${styles.footerInner}`}>
           <div>
             <p className={styles.footerName}>Philémon Eydoux</p>
-            <p>Kinésithérapeute à domicile · Levallois-Perret, Neuilly-sur-Seine et Clichy</p>
+            <p>Kinésithérapeute à domicile · Levallois-Perret et Neuilly-sur-Seine</p>
           </div>
           <div className={styles.footerLinks}>
             <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>

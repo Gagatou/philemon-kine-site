@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 const SITE_URL = 'https://kineydoux.fr'
 
 export const metadata: Metadata = {
-  title: 'Kinésithérapeute à domicile à Levallois-Perret, Neuilly et Clichy - Philémon Eydoux',
-  description: 'Kinésithérapeute à domicile à Levallois-Perret, Neuilly-sur-Seine et Clichy (92) : rééducation, personnes âgées, pédiatrie et suivi du handicap. Conventionné. Rendez-vous par WhatsApp ou téléphone.',
+  title: 'Kinésithérapeute à domicile à Levallois-Perret et Neuilly - Philémon Eydoux',
+  description: 'Kinésithérapeute à domicile à Levallois-Perret et Neuilly-sur-Seine (92) : rééducation, personnes âgées, pédiatrie et suivi du handicap. Conventionné. Rendez-vous par WhatsApp ou téléphone.',
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: '/' },
   authors: [{ name: 'Philémon Eydoux' }],
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Philémon Eydoux - Kinésithérapeute à domicile',
-    description: 'Rééducation et accompagnement à domicile - Levallois-Perret, Neuilly-sur-Seine et Clichy',
+    description: 'Rééducation et accompagnement à domicile - Levallois-Perret et Neuilly-sur-Seine',
   },
 }
 
@@ -88,7 +88,6 @@ export default function RootLayout({
               areaServed: [
                 { '@type': 'City', name: 'Levallois-Perret' },
                 { '@type': 'City', name: 'Neuilly-sur-Seine' },
-                { '@type': 'City', name: 'Clichy' },
               ],
               priceRange: '€',
               openingHoursSpecification: [

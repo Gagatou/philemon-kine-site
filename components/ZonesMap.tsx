@@ -6,7 +6,6 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 const LABELS: [string, [number, number]][] = [
   ['Levallois-Perret', [2.2874, 48.895]],
   ['Neuilly-sur-Seine', [2.2686, 48.8846]],
-  ['Clichy', [2.3064, 48.9044]],
 ]
 
 const cssVar = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim()
