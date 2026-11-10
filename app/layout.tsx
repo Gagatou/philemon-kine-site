@@ -26,8 +26,8 @@ export const viewport: Viewport = {
 const SITE_URL = 'https://kineydoux.fr'
 
 export const metadata: Metadata = {
-  title: 'Kinésithérapeute à domicile à Levallois-Perret et Neuilly - Philémon Eydoux',
-  description: 'Kinésithérapeute à domicile à Levallois-Perret et Neuilly-sur-Seine (92) : rééducation, personnes âgées, pédiatrie et suivi du handicap. Conventionné. Rendez-vous par WhatsApp ou téléphone.',
+  title: 'Kiné à domicile Levallois-Perret & Neuilly-sur-Seine | P. Eydoux',
+  description: 'Kinésithérapeute conventionné à domicile à Levallois-Perret et Neuilly-sur-Seine : rééducation, personnes âgées, pédiatrie, handicap. RDV par WhatsApp ou téléphone.',
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: '/' },
   authors: [{ name: 'Philémon Eydoux' }],
@@ -77,6 +77,11 @@ export default function RootLayout({
               description: 'Kinésithérapeute à domicile spécialisé en rééducation, accompagnement des personnes âgées et suivi du handicap',
               image: `${SITE_URL}/philemon-eydoux.jpg`,
               url: SITE_URL,
+              identifier: {
+                '@type': 'PropertyValue',
+                name: 'RPPS',
+                value: '10102028452',
+              },
               telephone: '+33635550050',
               address: {
                 '@type': 'PostalAddress',
