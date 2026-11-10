@@ -18,6 +18,7 @@ import {
   X,
   Plus,
   Check,
+  Star,
 } from 'lucide-react'
 import styles from './page.module.css'
 import ZonesMap from '@/components/ZonesMap'
@@ -25,6 +26,7 @@ import ZonesMap from '@/components/ZonesMap'
 const PHONE_NUMBER = '33635550050'
 const PHONE_DISPLAY = '06 35 55 00 50'
 const PHONE_HREF = 'tel:+33635550050'
+const GOOGLE_PROFILE_URL = 'https://share.google/9aHkr4zeZkLUYT2MS'
 const WHATSAPP_MESSAGE = 'Bonjour Philémon, je souhaiterais prendre un rendez-vous.'
 const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
 
@@ -359,6 +361,14 @@ export default function Home() {
                 <div>
                   <dt><Phone size={18} aria-hidden="true" /> Téléphone</dt>
                   <dd><a href={PHONE_HREF}>{PHONE_DISPLAY}</a></dd>
+                </div>
+                <div>
+                  <dt><Star size={18} aria-hidden="true" /> Avis</dt>
+                  <dd>
+                    <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener noreferrer">
+                      Voir ma fiche Google
+                    </a>
+                  </dd>
                 </div>
               </dl>
             </div>

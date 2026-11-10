@@ -103,7 +103,7 @@ export default function RootLayout({
                   closes: '18:00',
                 },
               ],
-              sameAs: ['https://wa.me/33635550050'],
+              sameAs: ['https://wa.me/33635550050', 'https://share.google/9aHkr4zeZkLUYT2MS'],
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'Customer Service',
